@@ -17,7 +17,7 @@ import org.apex.patpat.PatPattern;
 
 import org.apex.util.MySQLConnector;
 
-public class Test {
+public class RegexMatchTest {
 
 	public static void main(String[] args) throws SQLException, IOException {
 		// TODO 自动生成的方法存根

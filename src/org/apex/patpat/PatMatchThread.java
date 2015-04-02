@@ -33,44 +33,102 @@ public abstract class PatMatchThread extends Thread {
 	}
 	
 	protected abstract char isMatched(String stc, PatPattern ptn);
+	//'y': match all ok. 'n': not match at all. 'u': undeterminded.
 	
-	protected void matchPattern(){
+	protected void matchPattern() throws SQLException{
+		String data = "";
+		char state = isMatched(stc, ptn);
 		
-	}
-	
-	protected void matchPatterns() throws SQLException{
-		for(PatPattern ptn : ptnarr){
-			char state = isMatched(stc, ptn);
-			if(state == 'y'){
-				System.out.println(stc + " : " + ptn.toString());
-				stmt.executeUpdate("insert into patty.match_result values (\"" + stc + "\", \"" + ptn.toString() + "\", \"" + ptn.getDomains() + "\", \"" + ptn.getRanges() + "\", " + 1 + ")");
+		if(state == 'y'){
+			for(String relation : ptn.getRelations()){
+				for(String domain : ptn.getDomains()){
+					for(String range : ptn.getRanges()){
+						if(data.length() != 0)data += ",";
+						data += "(" + stc + "," + ptn.toString() + "," + relation + "," + domain + "," + range + "," + "1)";
+					}
+				}
 			}
-			else if(state == 'u'){
-				System.out.println(stc + " : " + ptn.toString());
-				stmt.executeUpdate("insert into patty.match_result values (\"" + stc + "\", \"" + ptn.toString() + "\", \"" + ptn.getDomains() + "\", \"" + ptn.getRanges() + "\", " + 0 + ")");				
+			System.out.println(stc + " : " + ptn.toString());
+		}
+		else if(state == 'u'){
+			for(String relation : ptn.getRelations()){
+				for(String domain : ptn.getDomains()){
+					for(String range : ptn.getRanges()){
+						if(data.length() != 0)data += ",";
+						data += "(" + stc + "," + ptn.toString() + "," + relation + "," + domain + "," + range + "," + "0)";
+					}
+				}
 			}
+			System.out.println(stc + " : " + ptn.toString());
 		}
 	}
 	
-	protected void matchAllPatterns(){
+	protected void matchPatterns() throws SQLException{
+		int writeCount = 0;
+		String data = "";
+		
+		for(PatPattern ptn : ptnarr){
+			char state = isMatched(stc, ptn);
+			if(state == 'y'){
+				for(String relation : ptn.getRelations()){
+					for(String domain : ptn.getDomains()){
+						for(String range : ptn.getRanges()){
+							if(data.length() != 0)data += ",";
+							data += "(" + stc + "," + ptn.toString() + "," + relation + "," + domain + "," + range + "," + "1)";
+						}
+					}
+				}
+				System.out.println(stc + " : " + ptn.toString());
+			}
+			else if(state == 'u'){
+				for(String relation : ptn.getRelations()){
+					for(String domain : ptn.getDomains()){
+						for(String range : ptn.getRanges()){
+							if(data.length() != 0)data += ",";
+							data += "(" + stc + "," + ptn.toString() + "," + relation + "," + domain + "," + range + "," + "0)";
+						}
+					}
+				}
+				System.out.println(stc + " : " + ptn.toString());
+			}
+			
+			if(writeCount % 1000 == 0){
+				//Write data for every 1000 items
+				stmt.executeUpdate("insert into `patty`.`match_result values` " + data);
+				data = "";
+			}
+		}
+
+		stmt.executeUpdate("insert into `patty`.`match_result values` " + data);
 	}
 	
-	private void matchallPatterns() throws SQLException{
+	protected void matchAllPatterns() throws SQLException{
+		
 	}
 	
 	public void run(){
 		if(matchAllPatterns && ptnarr != null){
 			try {
-				matchallPatterns();
+				matchAllPatterns();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 		else if(matchAllPatterns && ptnarr == null){
-			matchAllPatterns();
+			try {
+				matchAllPatterns();
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
 		}
 		else{
-			matchPattern();
+			try {
+				matchPattern();
+			} catch (SQLException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
 		}
 	}
 
