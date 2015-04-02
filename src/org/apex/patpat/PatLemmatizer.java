@@ -3,10 +3,8 @@ package org.apex.patpat;
 import java.util.List;
 import java.util.Properties;
 
-import edu.stanford.nlp.ling.CoreAnnotations.CharAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.LemmaAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
-import edu.stanford.nlp.ling.CoreAnnotations.TextAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -43,18 +41,20 @@ public class PatLemmatizer {
 					res += lema + " ";
 				}
 				else{
-					res += token.get(CharAnnotation.class);
+					res += lema;
 				}
 			}
 		}
-		return res;
+//		return res;
+		return res.replace("-lsb-", "[").replace(" -rsb-", "]").replace("-rsb-", "] ").replace("-lrb-", "(").replace(" -rrb-", ") ").replace("-rrb-", ") ");
 	}
 
 	public static void main(String[] args) {
 //		String[] str = {"nihao", "nibuhao"};
 //		System.out.println(str.toString());
 //		PatLemmatizer.lemmatize("What was Obama doing when I broke in?");
-		System.out.println(PatLemmatizer.lemmatize("What was Obama doing when I broke in? Who is xiaoming's brother? When did jude made his \"achieves\"?"));
+//		System.out.println(PatLemmatizer.lemmatize("What was Obama doing when I broke in? Who is xiaoming's brother? When did jude made his \"achieves\"?"));
+		System.out.println(PatLemmatizer.lemmatize("is known [[num]][[prp]] role as(.*)?!-lsb"));
 //		PatLemmatizer.lemmatize("was");
 	}
 

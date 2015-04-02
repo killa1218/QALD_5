@@ -84,6 +84,10 @@ public class PatPattern {
 		}
 	}
 	
+	public Pattern getRegex(){
+		return getRegex(true);
+	}
+	
 	public String[] getKeyWords(){
 		// Those whose POS tag is JJ or JJR or JJS or NN or NNP or NNS or NNPS or MD or FW or LS or RB or RBR or RBS or RP or VB or VBD or VBG or VBN or VBP or VBZ or WDT or WP or WP$ or WRB
 		LinkedList<String> resList = new LinkedList<String>();
@@ -92,7 +96,7 @@ public class PatPattern {
 			tagger = new MaxentTagger("./lib/models/english-left3words-distsim.tagger");
 		}
 		
-		List<TaggedWord> rl = tagger.apply(new PatSentence(Pattern.compile("\\s*\\[\\[\\w+\\]\\]").matcher(pattern).replaceAll("")).toList());
+		List<TaggedWord> rl = tagger.apply(new PatSentence(Pattern.compile("\\s*\\[\\[\\w+\\]\\]").matcher(PatLemmatizer.lemmatize(pattern)).replaceAll("")).toList());
 		
 		for(TaggedWord tw : rl){
 			char firstChar = tw.tag().charAt(0);
@@ -237,12 +241,11 @@ public class PatPattern {
 //		}
 //			System.out.println(new Date().toString());
 		
-//		PatPattern ptn = new PatPattern("best known for [[prp]] role in");
-		System.out.println(PatLemmatizer.lemmatize("best known for [[con]] role in"));
-//		System.out.println(ptn.getRegex().toString());
-//		for(String wd : ptn.getKeyWords()){
-//			System.out.println(wd);
-//		}
+		PatPattern ptn = new PatPattern("best known for [[prp]] role in");
+		System.out.println(ptn.getRegex().toString());
+		for(String wd : ptn.getKeyWords()){
+			System.out.println(wd);
+		}
 
 	}
 	
