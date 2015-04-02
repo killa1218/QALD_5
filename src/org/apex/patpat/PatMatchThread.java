@@ -38,7 +38,6 @@ public abstract class PatMatchThread extends Thread {
 	protected void matchPattern() throws SQLException{
 		StringBuilder data = new StringBuilder();
 		char state = isMatched(stc, ptn);
-		int count = 0;
 		
 		if(state == 'y'){
 			String[] relationArr = ptn.getRelations();
