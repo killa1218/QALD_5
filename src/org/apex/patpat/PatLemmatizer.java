@@ -3,8 +3,10 @@ package org.apex.patpat;
 import java.util.List;
 import java.util.Properties;
 
+import edu.stanford.nlp.ling.CoreAnnotations.CharAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.LemmaAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
+import edu.stanford.nlp.ling.CoreAnnotations.TextAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -16,7 +18,6 @@ public class PatLemmatizer {
 	private static StanfordCoreNLP pipeline = null;
 
 	public PatLemmatizer() {
-		// TODO 自动生成的构造函数存根
 		init();
 	}
 	
@@ -41,13 +42,15 @@ public class PatLemmatizer {
 				if(Character.isLetter(lema.charAt(0))){
 					res += lema + " ";
 				}
+				else{
+					res += token.get(CharAnnotation.class);
+				}
 			}
 		}
 		return res;
 	}
 
 	public static void main(String[] args) {
-		// TODO 自动生成的方法存根
 //		String[] str = {"nihao", "nibuhao"};
 //		System.out.println(str.toString());
 //		PatLemmatizer.lemmatize("What was Obama doing when I broke in?");

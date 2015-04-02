@@ -69,7 +69,13 @@ public class PatPattern {
 		
 	}
 	
-	public Pattern getRegex(){
+	public Pattern getRegex(boolean doLemmatize){
+		if(doLemmatize){
+			
+		}
+		else{
+			
+		}
 		if(ptn != null){
 			return ptn;
 		}
@@ -86,12 +92,12 @@ public class PatPattern {
 			tagger = new MaxentTagger("./lib/models/english-left3words-distsim.tagger");
 		}
 		
-		List<TaggedWord> rl = tagger.apply(new PatSentence(pattern).toList());
+		List<TaggedWord> rl = tagger.apply(new PatSentence(Pattern.compile("\\s*\\[\\[\\w+\\]\\]").matcher(pattern).replaceAll("")).toList());
 		
 		for(TaggedWord tw : rl){
 			char firstChar = tw.tag().charAt(0);
 			if(firstChar == 'J' || firstChar == 'N' || firstChar == 'M' || firstChar == 'F' || firstChar == 'L' || firstChar == 'R' || firstChar == 'V' || firstChar == 'W'){
-				resList.add(tw.word());				
+				resList.add(tw.word());
 			}
 		}
 		
@@ -231,11 +237,12 @@ public class PatPattern {
 //		}
 //			System.out.println(new Date().toString());
 		
-		PatPattern ptn = new PatPattern("best known for [[prp]] role in");
-		System.out.println(ptn.getRegex().toString());
-		for(String wd : ptn.getKeyWords()){
-			System.out.println(wd);
-		}
+//		PatPattern ptn = new PatPattern("best known for [[prp]] role in");
+		System.out.println(PatLemmatizer.lemmatize("best known for [[con]] role in"));
+//		System.out.println(ptn.getRegex().toString());
+//		for(String wd : ptn.getKeyWords()){
+//			System.out.println(wd);
+//		}
 
 	}
 	
