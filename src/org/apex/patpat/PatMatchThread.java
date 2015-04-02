@@ -103,20 +103,18 @@ public abstract class PatMatchThread extends Thread {
 				String[] relationArr = ptn.getRelations();
 				String[] domainArr = ptn.getDomains();
 				String[] rangeArr = ptn.getRanges();
-				System.out.println("relation: " + relationArr.length);
+				
 				for(String relation : relationArr){
-					System.out.println("domain: " + domainArr.length);
 					for(String domain : domainArr){
-						System.out.println("range: " + rangeArr.length);
 						for(String range : rangeArr){
 //							System.out.println("nihao");
 							if(data.length() != 0)data.append(',');
 							data.append("(\"").append(stc).append("\",\"").append(ptn.toString()).append("\",\"").append(relation).append("\",\"").append(domain).append("\",\"").append(range).append("\",").append("1)");
 							writeCount ++;
 							if(writeCount != 0 && writeCount % 1000 == 0){
-								System.out.println(writeCount);
+//								System.out.println(writeCount);
 								//Write data for every 1000 items
-								System.out.println(new StringBuilder().append("insert into `patty`.`match_result` values ").append(data).toString());
+//								System.out.println(new StringBuilder().append("insert into `patty`.`match_result` values ").append(data).toString());
 								stmt.executeUpdate(new StringBuilder().append("insert into `patty`.`match_result` values ").append(data).toString());
 								data = new StringBuilder();
 							}
@@ -140,7 +138,7 @@ public abstract class PatMatchThread extends Thread {
 			
 		}
 		
-		System.out.println(new StringBuilder().append("insert into `patty`.`match_result` values ").append(data).toString());
+//		System.out.println(new StringBuilder().append("insert into `patty`.`match_result` values ").append(data).toString());
 
 		if(data.length() != 0){
 			stmt.executeUpdate(new StringBuilder().append("insert into `patty`.`match_result` values ").append(data).toString());

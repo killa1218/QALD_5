@@ -41,7 +41,7 @@ public class RegexMatchTest {
 		
 		System.out.println("PatPattern Array built.");
 		
-		BufferedReader br = new BufferedReader(new FileReader(new File("./data/questions.txt")));
+		BufferedReader br = new BufferedReader(new FileReader(new File("./data/questions_splitted_200.txt")));
 		String question = null;
 
 		do{
@@ -50,7 +50,7 @@ public class RegexMatchTest {
 			if(question != null){
 				new PatRegMatchThread(question, question, ptnarr).start();
 			}
-			break;
+//			break;
 		}while(question != null);
 		
 		br.close();
