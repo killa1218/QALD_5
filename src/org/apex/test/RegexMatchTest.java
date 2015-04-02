@@ -9,10 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 
-import org.apex.patpat.PatMatchThread;
 import org.apex.patpat.PatPattern;
 
 import org.apex.util.MySQLConnector;
@@ -22,10 +19,10 @@ public class RegexMatchTest {
 	public static void main(String[] args) throws SQLException, IOException {
 		// TODO 自动生成的方法存根
 		PatPattern[] ptnarr = null;
-		HashSet<String> ptnSet=new HashSet<String>();
+		HashSet<String> ptnSet = new HashSet<String>();
 		Statement stmt = new MySQLConnector().connect();
-		stmt.execute("use patty");
-		ResultSet rs = stmt.executeQuery("select patterntext from wikipedia_patterns where 1");
+		ResultSet rs = stmt.executeQuery("select `patterntext` from `patty`.`wikipedia_patterns` where 1");
+		
 		while(rs.next()){
 			String ptnset = rs.getString(1);
 			String[] ptnsetArr = ptnset.split(";\\$");
@@ -41,21 +38,22 @@ public class RegexMatchTest {
 		
 		int curid=0;
 		for (String s:ptnSet){
-			ptnarr[curid++]=new PatPattern(s);
+			ptnarr[curid++] = new PatPattern(s);
 		}
 		
-		System.out.println("PatPattern Array build.");
+		System.out.println("PatPattern Array built.");
 		System.out.println(new Date().toString());
 		
-		BufferedReader br = new BufferedReader(new FileReader(new File("./rsc/questions.txt")));
+		BufferedReader br = new BufferedReader(new FileReader(new File("./data/questions.txt")));
 		String question = null;
 
 		do{
 			question = br.readLine();
-			System.out.println(question);
+//			System.out.println(question);
 			if(question != null){
 				new PatRegMatchThread(question, question, ptnarr).start();
 			}
+			break;
 		}while(question != null);
 		
 		br.close();

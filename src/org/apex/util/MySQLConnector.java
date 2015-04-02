@@ -13,7 +13,7 @@ public class MySQLConnector {
 		
 		try {
 	        Class.forName("com.mysql.jdbc.Driver");
-	        System.out.println("MySQL Driver Loaded!"); 
+//	        System.out.println("MySQL Driver Loaded!"); 
 	    } catch (ClassNotFoundException e) {
 	        System.out.println("MySQL Driver Loading Failed!");
 	        e.printStackTrace();
@@ -22,7 +22,7 @@ public class MySQLConnector {
 	    try {
 	        con = DriverManager.getConnection(url, username, password);
 	        stmt = con.createStatement();
-	        System.out.println("MySQL Connected!"); 
+//	        System.out.println("MySQL Connected!"); 
 	    } catch(SQLException e) {
 	        System.out.println("MySQL Connection Error!"); 
 	    }//connect

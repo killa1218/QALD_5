@@ -241,7 +241,7 @@ public class PatPattern {
 //		}
 //			System.out.println(new Date().toString());
 		
-		PatPattern ptn = new PatPattern("best known for [[prp]] role in");
+		PatPattern ptn = new PatPattern("ve [[prp]]");
 		System.out.println(ptn.getRegex().toString());
 		for(String wd : ptn.getKeyWords()){
 			System.out.println(wd);

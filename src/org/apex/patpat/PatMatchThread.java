@@ -92,24 +92,28 @@ public abstract class PatMatchThread extends Thread {
 				System.out.println(stc + " : " + ptn.toString());
 			}
 			
-			if(writeCount % 1000 == 0){
+			if(writeCount != 0 && writeCount % 1000 == 0){
 				//Write data for every 1000 items
+				System.out.println("insert into `patty`.`match_result values` " + data);
 				stmt.executeUpdate("insert into `patty`.`match_result values` " + data);
 				data = "";
 			}
 		}
 
-		stmt.executeUpdate("insert into `patty`.`match_result values` " + data);
+		if(data.length() != 0){
+			stmt.executeUpdate("insert into `patty`.`match_result values` " + data);
+		}
 	}
 	
 	protected void matchAllPatterns() throws SQLException{
 		
 	}
 	
+	@Override
 	public void run(){
 		if(matchAllPatterns && ptnarr != null){
 			try {
-				matchAllPatterns();
+				matchPatterns();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

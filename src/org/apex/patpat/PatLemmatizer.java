@@ -54,7 +54,7 @@ public class PatLemmatizer {
 //		System.out.println(str.toString());
 //		PatLemmatizer.lemmatize("What was Obama doing when I broke in?");
 //		System.out.println(PatLemmatizer.lemmatize("What was Obama doing when I broke in? Who is xiaoming's brother? When did jude made his \"achieves\"?"));
-		System.out.println(PatLemmatizer.lemmatize("is known [[num]][[prp]] role as(.*)?!-lsb"));
+		System.out.println(PatLemmatizer.lemmatize("ve [[num]]"));
 //		PatLemmatizer.lemmatize("was");
 	}
 
