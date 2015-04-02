@@ -1,0 +1,2815 @@
+Did Che Guevara have children?
+	pattern:
+		[[adj]] children			
+		[[con]] children			
+		[[det]] child				
+		[[det]] children			
+		[[num]] child			
+		[[num]] children			
+		[[prp]] child				
+		[[prp]] children			
+	relation:
+		illustrator
+		spouse
+		parent
+		birthPlace
+		predecessor
+		successor
+		relation
+		child
+		author
+		knownFor
+		artist
+		associatedMusicalArtist
+		hometown
+		company
+		associatedBand
+		network
+
+For which label did Elvis record his first album?
+	pattern:
+		[[con]] album
+	relation:
+		birthPlace
+		producer
+		album
+		country
+		recordLabel
+		artist
+		previousWork
+		associatedMusicalArtist
+		director
+		musicalArtist
+		writer
+		hometown
+		musicalBand
+		associatedBand
+		starring
+
+Give all swimmers that were born in Moscow.
+	pattern:
+		born [[con]]
+	relation:
+		college
+		party
+		religion
+		spouse
+		draftTeam
+		formerTeam
+		parent
+		birthPlace
+		predecessor
+		training
+		award
+		debutTeam
+		relation
+		country
+		education
+		almaMater
+		knownFor
+		nationality
+		associatedMusicalArtist
+		deathPlace
+		region
+		highschool
+		managerClub
+		residence
+		occupation
+		hometown
+		militaryBranch
+		team
+		league
+		associatedBand
+
+Give me all actors called Baldwin.
+	pattern:
+		[[adj]] act
+		[[con]] act
+		led [[adj]]
+		led [[con]]
+	relation:
+		president
+		spouse
+		partner
+		musicComposer
+		draftTeam
+		portrayer
+		formerTeam
+		parent
+		birthPlace
+		developer
+		producer
+		successor
+		debutTeam
+		narrator
+		editing
+		battle
+		primeMinister
+		recordLabel
+		education
+		creator
+		child
+		author
+		knownFor
+		commandStructure
+		nationality
+		influencedBy
+		associatedMusicalArtist
+		foundationPlace
+		director
+		deathPlace
+		region
+		series
+		assembly
+		publisher
+		cinematography
+		managerClub
+		product
+		garrison
+		residence
+		location
+		doctoralStudent
+		writer
+		locationCountry
+		team
+		league
+		relative
+		manufacturer
+		associatedBand
+		computingPlatform
+		starring
+
+		president
+		college
+		party
+		religion
+		deputy
+		spouse
+		musicComposer
+		draftTeam
+		builder
+		formerTeam
+		parent
+		birthPlace
+		predecessor
+		training
+		producer
+		bandMember
+		successor
+		parentCompany
+		award
+		debutTeam
+		placeOfBurial
+		narrator
+		editing
+		country
+		battle
+		primeMinister
+		education
+		trainer
+		author
+		almaMater
+		knownFor
+		artist
+		headquarter
+		otherParty
+		nationality
+		owningCompany
+		influencedBy
+		associatedMusicalArtist
+		influenced
+		director
+		restingPlace
+		deathPlace
+		destination
+		region
+		assembly
+		ground
+		cinematography
+		managerClub
+		product
+		residence
+		writer
+		hometown
+		militaryBranch
+		team
+		league
+		associatedBand
+		starring
+		network
+		leader
+		university
+		commander
+
+Give me all breeds of the German Shepherd dog.
+	pattern:
+		[[adj]] br
+	relation:
+		president
+		college
+		party
+		spouse
+		place
+		formerTeam
+		parent
+		birthPlace
+		predecessor
+		training
+		locatedInArea
+		successor
+		award
+		broadcastNetwork
+		relation
+		country
+		battle
+		child
+		militaryUnit
+		almaMater
+		knownFor
+		broadcastArea
+		nationality
+		owningCompany
+		associatedMusicalArtist
+		crosses
+		city
+		deathPlace
+		regionServed
+		managerClub
+		residence
+		location
+		splitFromParty
+		hometown
+		militaryBranch
+		team
+		league
+		relative
+		owner
+		associatedBand
+		starring
+		network
+		channel
+
+Give me all Canadian Grunge record labels.
+	pattern:
+		[[adj]] labels
+	relation:
+		recordLabel
+		associatedMusicalArtist
+		associatedBand
+
+Give me all islands that belong to Japan.
+	pattern:
+		[[adj]] islands
+		[[det]] island
+		belong to
+		long [[con]]
+		ve [[det]]
+	relation:
+		birthPlace
+		country
+		isPartOf
+
+		party
+		religion
+		country
+		team
+
+Give me all libraries established earlier than 1400.
+	pattern:
+		[[adj]] earlier
+		[[adj]] established
+		[[adj]] established [[pro]]
+		[[con]] established
+		[[con]] established [[det]]
+		[[det]] established
+		ed [[num]]
+		established [[adj]]
+		established [[con]]
+		established [[det]]
+		established [[num]]
+		established [[pro]]
+		established [[prp]]
+	relation:
+		formerTeam
+		team
+
+		president
+		party
+		keyPerson
+		birthPlace
+		foundedBy
+		parentCompany
+		debutTeam
+		country
+		locationCity
+		almaMater
+		knownFor
+		headquarter
+		nationality
+		owningCompany
+		city
+		affiliation
+		deathPlace
+		location
+		type
+		stateOfOrigin
+		team
+		league
+		owner
+		state
+
+Give me all movies with Tom Cruise.
+	pattern:
+		[[adj]] cruise
+		[[det]] cruise
+		[[det]] movies [[con]]
+	relation:
+		operator
+		owner
+
+Give me all soccer clubs in Spain.
+	pattern:
+		[[det]] clubs [[adj]]
+	relation:
+		college
+		draftTeam
+		formerTeam
+		birthPlace
+		debutTeam
+		ground
+		managerClub
+		team
+		league
+
+Give me all soccer clubs in the Premier League.
+	pattern:
+		[[adj]] clubs
+		[[det]] clubs [[adj]]
+	relation:
+		college
+		draftTeam
+		formerTeam
+		birthPlace
+		managerClub
+		team
+		league
+
+Give me all types of eating disorders.
+	pattern:
+		[[adj]] type
+	relation:
+
+Give me all video games published by Mean Hamster Software.
+	pattern:
+		[[adj]] published [[con]]
+		[[adj]] published by
+		published by
+	relation:
+		notableWork
+		developer
+		country
+		headquarters
+		nationality
+		influencedBy
+		publisher
+		occupation
+		owner
+		computingPlatform
+		distributor
+
+Give me the capitals of all countries in Africa.
+	pattern:
+		[[num]] countries
+	relation:
+		country
+		regionServed
+
+Give me the capitals of all countries that the Himalayas run through.
+	pattern:
+		[[adj]] countries
+		[[adj]] countries [[adj]]
+		[[det]] countries
+		[[num]] countries
+		countries [[adj]]
+		countries [[con]]
+	relation:
+		country
+		regionServed
+
+How many Aldi stores are there?
+	pattern:
+		[[adj]] man
+		[[det]] man
+	relation:
+		college
+		party
+		spouse
+		musicComposer
+		draftTeam
+		formerTeam
+		parent
+		birthPlace
+		producer
+		successor
+		debutTeam
+		narrator
+		editing
+		country
+		battle
+		employer
+		author
+		militaryUnit
+		almaMater
+		knownFor
+		operatedBy
+		nationality
+		associatedMusicalArtist
+		director
+		deathPlace
+		region
+		assembly
+		cinematography
+		managerClub
+		product
+		location
+		doctoralStudent
+		writer
+		occupation
+		locationCountry
+		militaryBranch
+		team
+		league
+		manufacturer
+		owner
+		associatedBand
+		starring
+		notableCommander
+
+How many countries are there in Europe?
+	pattern:
+		[[num]] countries
+	relation:
+		country
+		regionServed
+
+How many films did Hal Roach produce?
+	pattern:
+		[[det]] did
+	relation:
+		president
+		party
+		spouse
+		formerTeam
+		birthPlace
+		successor
+		country
+		trainer
+		almaMater
+		nationality
+		influencedBy
+		associatedMusicalArtist
+		deathPlace
+		region
+		residence
+		team
+		associatedBand
+		citizenship
+
+How many languages are spoken in Colombia?
+	pattern:
+		[[adj]] language
+		[[det]] language
+	relation:
+		musicComposer
+		producer
+		narrator
+		editing
+		sisterStation
+		author
+		headquarter
+		director
+		cinematography
+		writer
+		starring
+
+How many missions does the Soyuz programme have?
+	pattern:
+		[[adj]] man
+		[[adj]] mission
+		[[adj]] missions
+		[[det]] man
+		[[num]] man
+	relation:
+		college
+		party
+		spouse
+		musicComposer
+		draftTeam
+		formerTeam
+		parent
+		birthPlace
+		producer
+		successor
+		debutTeam
+		narrator
+		editing
+		country
+		battle
+		employer
+		author
+		militaryUnit
+		almaMater
+		knownFor
+		operatedBy
+		nationality
+		associatedMusicalArtist
+		director
+		deathPlace
+		region
+		assembly
+		cinematography
+		managerClub
+		product
+		location
+		doctoralStudent
+		writer
+		occupation
+		locationCountry
+		militaryBranch
+		team
+		league
+		manufacturer
+		owner
+		associatedBand
+		starring
+		notableCommander
+
+		birthPlace
+		predecessor
+		capital
+		country
+		battle
+		militaryUnit
+		nationality
+		deathPlace
+		militaryBranch
+
+How many pages does War and Peace have?
+	pattern:
+		[[adj]] man
+		[[det]] man
+	relation:
+		college
+		party
+		spouse
+		musicComposer
+		draftTeam
+		formerTeam
+		parent
+		birthPlace
+		producer
+		successor
+		debutTeam
+		narrator
+		editing
+		country
+		battle
+		employer
+		author
+		militaryUnit
+		almaMater
+		knownFor
+		operatedBy
+		nationality
+		associatedMusicalArtist
+		director
+		deathPlace
+		region
+		assembly
+		cinematography
+		managerClub
+		product
+		location
+		doctoralStudent
+		writer
+		occupation
+		locationCountry
+		militaryBranch
+		team
+		league
+		manufacturer
+		owner
+		associatedBand
+		starring
+		notableCommander
+
+How many politicians graduated from Columbia University?
+	pattern:
+		[[con]] graduated from
+		graduated [[con]]
+		graduated from
+	relation:
+		college
+		party
+		draftTeam
+		formerTeam
+		birthPlace
+		training
+		debutTeam
+		country
+		battle
+		education
+		almaMater
+		nationality
+		associatedMusicalArtist
+		deathPlace
+		region
+		highschool
+		managerClub
+		residence
+		stateOfOrigin
+		hometown
+		militaryBranch
+		team
+		associatedBand
+		university
+
+How many programming languages are there?
+	pattern:
+		[[adj]] language
+		[[det]] language
+	relation:
+		musicComposer
+		producer
+		narrator
+		editing
+		sisterStation
+		author
+		headquarter
+		director
+		cinematography
+		writer
+		starring
+
+In which films did Julia Roberts as well as Richard Gere play?
+	pattern:
+		[[adj]] play
+		[[con]] play
+		[[num]] play
+	relation:
+		prospectTeam
+		college
+		spouse
+		musicComposer
+		draftTeam
+		portrayer
+		formerTeam
+		parent
+		formerHighschool
+		birthPlace
+		developer
+		producer
+		successor
+		award
+		debutTeam
+		narrator
+		editing
+		country
+		battle
+		recordLabel
+		author
+		almaMater
+		knownFor
+		nationality
+		whaDraftTeam
+
+In which military conflicts did Lawrence of Arabia participate?
+	pattern:
+		[[adj]] conflict
+		[[adj]] law
+	relation:
+		place
+
+		birthPlace
+		training
+		successor
+		province
+		relation
+		country
+		isPartOf
+		education
+		almaMater
+		headquarter
+		foundationPlace
+		deathPlace
+		residence
+		location
+		hometown
+		state
+
+In which programming language is GIMP written?
+	pattern:
+		[[con]] written
+		[[det]] written
+	relation:
+		composer
+		illustrator
+		musicComposer
+		producer
+		narrator
+		editing
+		creator
+		author
+		artist
+		influencedBy
+		associatedMusicalArtist
+		basedOn
+		director
+		publisher
+		musicalArtist
+		cinematography
+		writer
+		musicalBand
+		associatedBand
+		starring
+		opponent
+
+In which studio did the Beatles record their first album?
+	pattern:
+		[[adj]] album
+		[[adj]] beat
+		[[con]] album
+		[[con]] beat
+		[[det]] album
+		[[det]] beat
+		[[det]] did
+		[[num]] album
+		[[num]] beat
+		[[pro]] beat
+		[[prp]] album
+		did [[prp]]
+	relation:
+		birthPlace
+		producer
+		album
+		country
+		recordLabel
+		artist
+		previousWork
+		associatedMusicalArtist
+		director
+		musicalArtist
+		writer
+		hometown
+		musicalBand
+		associatedBand
+		starring
+
+		formerTeam
+		birthPlace
+		successor
+		beatifiedBy
+		team
+		canonizedBy
+
+		president
+		party
+		spouse
+		formerTeam
+		birthPlace
+		successor
+		country
+		trainer
+		almaMater
+		nationality
+		influencedBy
+		associatedMusicalArtist
+		deathPlace
+		region
+		residence
+		team
+		associatedBand
+		citizenship
+
+In which U.S. state is Mount McKinley located?
+	pattern:
+		nt [[pro]]
+	relation:
+		prospectTeam
+		president
+		profession
+		college
+		militaryRank
+		party
+		religion
+		keyPerson
+		tenant
+		deputy
+		spouse
+		partner
+		place
+		musicComposer
+		draftTeam
+		formerTeam
+		parent
+		routeStart
+		formerBroadcastNetwork
+		formerHighschool
+		vicePresident
+		birthPlace
+		predecessor
+		training
+		owningOrganisation
+		usedInWar
+		lieutenant
+		locatedInArea
+		operator
+		developer
+		producer
+		foundedBy
+		bandMember
+		doctoralAdvisor
+		successor
+		parentCompany
+		award
+		servingRailwayLine
+		capital
+		broadcastNetwork
+		anthem
+		debutTeam
+		province
+		appointer
+		narrator
+		editing
+		relation
+		mountainRange
+		mergedIntoParty
+		presenter
+		country
+		battle
+		hubAirport
+		isPartOf
+		subsidiary
+		locationCity
+		primeMinister
+		monarch
+		recordLabel
+		sisterStation
+		employer
+		education
+		trainer
+		creator
+		child
+		author
+		militaryUnit
+		almaMater
+		routeJunction
+		knownFor
+		artist
+		headquarter
+		otherParty
+		bodyDiscovered
+		operatedBy
+		broadcastArea
+		routeEnd
+		headquarters
+		relatedMeanOfTransportation
+		nationality
+		school
+		previousWork
+		whaDraftTeam
+		owningCompany
+		influencedBy
+		associatedMusicalArtist
+		governor
+		city
+		chancellor
+		affiliation
+		influenced
+		foundationPlace
+		board
+		director
+		restingPlace
+		deathPlace
+		majorShrine
+		language
+		regionServed
+		region
+		relation
+		 
+		riverMouth
+		series
+		highschool
+		vehicle
+		maintainedBy
+		ground
+		sourceCountry
+		publisher
+		musicalArtist
+		cinematography
+		veneratedIn
+		significantBuilding
+		managerClub
+		product
+		garrison
+		residence
+		location
+		type
+		leaderName
+		doctoralStudent
+		family
+		writer
+		stateOfOrigin
+		occupation
+		hometown
+		locationCountry
+		militaryBranch
+		team
+		league
+		musicalBand
+		owner
+		associatedBand
+		computingPlatform
+		starring
+		state
+		academicAdvisor
+		citizenship
+		network
+		isPartOfMilitaryConflict
+		university
+		origin
+		instrument
+		canonizedBy
+
+In which year was Rachel Stevens born?
+	pattern:
+		[[det]] born
+		[[num]] born
+	relation:
+		college
+		party
+		religion
+		spouse
+		draftTeam
+		formerTeam
+		parent
+		birthPlace
+		predecessor
+		training
+		award
+		debutTeam
+		relation
+		country
+		education
+		almaMater
+		knownFor
+		nationality
+		associatedMusicalArtist
+		deathPlace
+		region
+		highschool
+		managerClub
+		residence
+		occupation
+		hometown
+		militaryBranch
+		team
+		league
+		associatedBand
+
+Is Christian Bale starring in Velvet Goldmine?
+	pattern:
+		[[con]] starring
+		[[det]] starring [[con]]
+		[[num]] starring [[con]]
+		starring [[adj]]
+	relation:
+		musicComposer
+		producer
+		narrator
+		editing
+		author
+		director
+		cinematography
+		writer
+		starring
+
+Is Pamela Anderson a vegan?
+	pattern:
+		son [[adj]]
+		son [[det]]
+		son [[num]]
+	relation:
+		president
+		college
+		composer
+		spouse
+		musicComposer
+		draftTeam
+		formerTeam
+		parent
+		birthPlace
+		predecessor
+		developer
+		producer
+		successor
+		album
+		debutTeam
+		relation
+		country
+		formerBandMember
+		recordLabel
+		trainer
+		child
+		knownFor
+		artist
+		influencedBy
+		associatedMusicalArtist
+		influenced
+		deathPlace
+		series
+		publisher
+		musicalArtist
+		managerClub
+		product
+		residence
+		writer
+		hometown
+		team
+		league
+		relative
+		musicalBand
+		associatedBand
+		starring
+		citizenship
+
+List all episodes of the first season of the HBO television series The Sopranos.
+	pattern:
+		son [[adj]]
+	relation:
+		president
+		college
+		composer
+		spouse
+		musicComposer
+		draftTeam
+		formerTeam
+		parent
+		birthPlace
+		predecessor
+		developer
+		producer
+		successor
+		album
+		debutTeam
+		relation
+		country
+		formerBandMember
+		recordLabel
+		trainer
+		child
+		knownFor
+		artist
+		influencedBy
+		associatedMusicalArtist
+		influenced
+		deathPlace
+		series
+		publisher
+		musicalArtist
+		managerClub
+		product
+		residence
+		writer
+		hometown
+		team
+		league
+		relative
+		musicalBand
+		associatedBand
+		starring
+		citizenship
+
+List the children of Margaret Thatcher.
+	pattern:
+		[[det]] children
+	relation:
+		illustrator
+		spouse
+		parent
+		successor
+		child
+		author
+		artist
+		associatedMusicalArtist
+		company
+		associatedBand
+		network
+
+Through which countries does the Yenisei river flow?
+	pattern:
+		[[num]] countries
+	relation:
+		country
+		regionServed
+
+To which countries does the Himalayan mountain system extend?
+	pattern:
+		[[num]] countries
+		countries [[adj]]
+	relation:
+		country
+		regionServed
+
+Was the wife of president Lincoln called Mary?
+	pattern:
+		president [[det]]
+	relation:
+		president
+		party
+		keyPerson
+		birthPlace
+		successor
+		country
+		employer
+		education
+		almaMater
+		knownFor
+		nationality
+		deathPlace
+		residence
+		leaderName
+		occupation
+
+Was U.S. president Jackson involved in a war?
+	pattern:
+		[[det]] president
+		[[det]] president [[con]]
+president [[det]]
+	relation:
+		president
+		party
+		keyPerson
+		birthPlace
+		successor
+		country
+		employer
+		education
+		almaMater
+		knownFor
+		nationality
+		deathPlace
+		residence
+		leaderName
+		occupation
+
+What airlines are part of the SkyTeam alliance?
+	pattern:
+		[[adj]] air
+		[[adj]] airline
+		[[adj]] alliance
+		[[det]] airline
+	relation:
+		formerCoach
+		party
+		keyPerson
+		spouse
+		birthPlace
+		country
+		hubAirport
+		creator
+		almaMater
+		knownFor
+		headquarter
+		city
+		deathPlace
+		managerClub
+		location
+		doctoralStudent
+		occupation
+		company
+		network
+		distributor
+		channel
+
+		hubAirport
+		headquarter
+
+What are the specialities of the UNC Health Care?
+	pattern:
+		[[det]] car
+	relation:
+		president
+		college
+		deputy
+		spouse
+		draftTeam
+		builder
+		formerTeam
+		formerBroadcastNetwork
+		birthPlace
+		predecessor
+		doctoralAdvisor
+		successor
+		award
+		debutTeam
+		country
+		primeMinister
+		trainer
+		almaMater
+		knownFor
+		headquarter
+		influencedBy
+		associatedMusicalArtist
+		deathPlace
+		publisher
+		managerClub
+		location
+		occupation
+		hometown
+		team
+		league
+		manufacturer
+		associatedBand
+		academicAdvisor
+
+What are the top-10 action role-playing video games according to IGN?
+	pattern:
+		[[con]] according to
+	relation:
+		spouse
+		parent
+		knownFor
+
+What is the area code of Berlin?
+	pattern:
+		[[adj]] area
+		[[adj]] area [[adj]]
+		[[adj]] area [[con]]
+		[[con]] area
+		[[det]] area
+	relation:
+		parent
+		birthPlace
+		country
+		isPartOf
+		routeJunction
+		broadcastArea
+		city
+		district
+		location
+
+What is the currency of the Czech Republic?
+	pattern:
+		[[adj]] republic
+	relation:
+
+What is the founding year of the brewery that produces Pilsner Urquell?
+	pattern:
+		[[adj]] br
+	relation:
+		president
+		college
+		party
+		spouse
+		place
+		formerTeam
+		parent
+		birthPlace
+		predecessor
+		training
+		locatedInArea
+		successor
+		award
+		broadcastNetwork
+		relation
+		country
+		battle
+		child
+		militaryUnit
+		almaMater
+		knownFor
+		broadcastArea
+		nationality
+		owningCompany
+		associatedMusicalArtist
+		crosses
+		city
+		deathPlace
+		regionServed
+		managerClub
+		residence
+		location
+		splitFromParty
+		hometown
+		militaryBranch
+		team
+		league
+		relative
+		owner
+		associatedBand
+		starring
+		network
+		channel
+
+What is the highest mountain in Australia?
+	pattern:
+		[[adj]] highest mountain in
+	relation:
+		locatedInArea
+		mountainRange
+
+What is the highest mountain?
+	pattern:
+		[[adj]] highest mountain
+		[[det]] highest
+		[[det]] highest mountain
+	relation:
+		locatedInArea
+		mountainRange
+
+		locatedInArea
+		mountainRange
+		country
+		parentMountainPeak
+		nationality
+		language
+		location
+
+What is the highest place of the Urals?
+	pattern:
+		[[det]] highest
+	relation:
+		locatedInArea
+		mountainRange
+		country
+		parentMountainPeak
+		nationality
+		language
+		location
+
+What is the highest volcano in Africa?
+	pattern:
+		[[det]] highest
+	relation:
+		locatedInArea
+		mountainRange
+		country
+		parentMountainPeak
+		nationality
+		language
+		location
+
+What is the location of the Houses of Parliament?
+	pattern:
+		[[adj]] house
+		[[det]] house
+	relation:
+		birthPlace
+		architect
+		influencedBy
+		deathPlace
+		location
+
+What is the official website of Tom Cruise?
+	pattern:
+		[[adj]] cruise
+		[[det]] cruise
+		[[det]] official
+	relation:
+		operator
+		owner
+
+		president
+		party
+		primeMinister
+		influencedBy
+		associatedMusicalArtist
+		region
+		team
+		associatedBand
+
+What is the time zone of Salt Lake City?
+	pattern:
+		[[adj]] lake
+		[[det]] city
+		[[det]] lake
+	relation:
+		country
+		location
+
+		routeStart
+		birthPlace
+		servingRailwayLine
+		capital
+		country
+		isPartOf
+		largestCity
+		routeJunction
+		restingPlace
+		deathPlace
+		ground
+		district
+		residence
+		location
+		state
+
+What is the total population of Melbourne, Florida?
+	pattern:
+		[[adj]] pop
+		[[adj]] population
+		[[det]] pop
+		[[det]] population
+		[[det]] population [[con]]
+		[[det]] population of
+		[[det]] total
+		hat [[con]]
+	relation:
+		producer
+		country
+		artist
+		associatedMusicalArtist
+		musicalArtist
+		writer
+		hometown
+		musicalBand
+		associatedBand
+
+		country
+
+When was Carlo Giuliani shot?
+	pattern:
+		[[adj]] shot
+		[[con]] shot
+		[[det]] car
+		[[det]] shot
+		[[num]] shot
+	relation:
+		deathPlace
+
+		president
+		college
+		deputy
+		spouse
+		draftTeam
+		builder
+		formerTeam
+		formerBroadcastNetwork
+		birthPlace
+		predecessor
+		doctoralAdvisor
+		successor
+		award
+		debutTeam
+		country
+		primeMinister
+		trainer
+		almaMater
+		knownFor
+		headquarter
+		influencedBy
+		associatedMusicalArtist
+		deathPlace
+		publisher
+		managerClub
+		location
+		occupation
+		hometown
+		team
+		league
+		manufacturer
+		associatedBand
+		academicAdvisor
+
+Where in France is sparkling wine produced?
+	pattern:
+		[[det]] produced
+		[[det]] win
+		[[num]] win
+	relation:
+		musicComposer
+		developer
+		producer
+		successor
+		parentCompany
+		narrator
+		editing
+		recordLabel
+		creator
+		author
+		artist
+		nationality
+		associatedMusicalArtist
+		director
+		assembly
+		publisher
+		musicalArtist
+		cinematography
+		writer
+		musicalBand
+		manufacturer
+		company
+		associatedBand
+		computingPlatform
+		starring
+		network
+		distributor
+
+		president
+		college
+		party
+		deputy
+		spouse
+		partner
+		draftTeam
+		formerTeam
+		birthPlace
+		predecessor
+		doctoralAdvisor
+		successor
+		award
+		debutTeam
+		country
+		battle
+		primeMinister
+		trainer
+		knownFor
+		influencedBy
+		associatedMusicalArtist
+		governor
+		influenced
+		destination
+		region
+		sourceCountry
+		managerClub
+		parentOrganisation
+		team
+		league
+		associatedBand
+
+Where is the residence of the prime minister of Spain?
+	pattern:
+		[[adj]] residence
+		[[con]] minister
+	relation:
+		birthPlace
+		deathPlace
+
+		religion
+		birthPlace
+		successor
+		country
+		primeMinister
+		nationality
+		deathPlace
+
+Where was Bach born?
+	pattern:
+		[[adj]] born
+		[[det]] born
+		[[num]] born
+	relation:
+		college
+		party
+		religion
+		spouse
+		draftTeam
+		formerTeam
+		parent
+		birthPlace
+		predecessor
+		training
+		award
+		debutTeam
+		relation
+		country
+		education
+		almaMater
+		knownFor
+		nationality
+		associatedMusicalArtist
+		deathPlace
+		region
+		highschool
+		managerClub
+		residence
+		occupation
+		hometown
+		militaryBranch
+		team
+		league
+		associatedBand
+
+Which airports does Air China serve?
+	pattern:
+		[[adj]] airport
+		ports [[con]]
+	relation:
+		city
+		location
+
+		president
+		party
+		spouse
+		musicComposer
+		portrayer
+		parent
+		birthPlace
+		developer
+		producer
+		doctoralAdvisor
+		successor
+		province
+		narrator
+		editing
+		country
+		battle
+		isPartOf
+		primeMinister
+		monarch
+		sourceRegion
+		employer
+		trainer
+		author
+		militaryUnit
+		knownFor
+		headquarter
+		nationality
+		influencedBy
+		associatedMusicalArtist
+		city
+		foundationPlace
+		director
+		deathPlace
+		assembly
+		ground
+		publisher
+		cinematography
+		residence
+		location
+		writer
+		stateOfOrigin
+		occupation
+		militaryBranch
+		team
+		associatedBand
+		computingPlatform
+		starring
+		state
+		academicAdvisor
+
+Which beer originated in Ireland?
+	pattern:
+		ed [[num]]
+	relation:
+		prospectTeam
+		president
+		formerCoach
+		profession
+		college
+		outflow
+		militaryRank
+		party
+		associate
+		religion
+		composer
+		subsequentWork
+		keyPerson
+		tenant
+		illustrator
+		deputy
+		spouse
+		notableWork
+		partner
+		place
+		musicComposer
+		draftTeam
+		portrayer
+		builder
+		formerTeam
+		parent
+		routeStart
+		editor
+		formerBroadcastNetwork
+		rightTributary
+		vicePresident
+		deathCause
+		recordedIn
+		nearestCity
+		birthPlace
+		predecessor
+		training
+		owningOrganisation
+		usedInWar
+		discoverer
+		designer
+		lieutenant
+		locatedInArea
+		operator
+		developer
+		currentPartner
+		producer
+		part
+		foundedBy
+		incumbent
+		bandMember
+		doctoralAdvisor
+		successor
+		parentCompany
+		album
+		award
+		executiveProducer
+		designCompany
+		servingRailwayLine
+		capital
+		broadcastNetwork
+		debutTeam
+		province
+		placeOfBurial
+		appointer
+		narrator
+		editing
+		relation
+		mountainRange
+		mergedIntoParty
+		presenter
+		country
+		launchSite
+		architect
+		formerBandMember
+		battle
+		hubAirport
+		isPartOf
+		subsidiary
+		locationCity
+		primeMinister
+		monarch
+		recordLabel
+		sisterStation
+		employer
+		largestCity
+		education
+		trainer
+		creator
+		child
+		author
+		militaryUnit
+		almaMater
+		routeJunction
+		knownFor
+		inflow
+		artist
+		headquarter
+		commandStructure
+		otherParty
+		relation
+		 
+		operatedBy
+		distributingLabel
+		broadcastArea
+		routeEnd
+		headquarters
+		relatedMeanOfTransportation
+		nationality
+		school
+		source
+		whaDraftTeam
+		governingBody
+		formerPartner
+		owningCompany
+		influencedBy
+		manager
+		associatedMusicalArtist
+		governor
+		city
+		chancellor
+		basedOn
+		affiliation
+		automobilePlatform
+		influenced
+		industry
+		foundationPlace
+		board
+		director
+		restingPlace
+		deathPlace
+		destination
+		majorShrine
+		language
+		regionServed
+		region
+		riverMouth
+		series
+		highschool
+		assembly
+		vehicle
+		maintainedBy
+		ground
+		lyrics
+		publisher
+		musicalArtist
+		cinematography
+		district
+		veneratedIn
+		significantBuilding
+		beatifiedBy
+		managerClub
+		product
+		billed
+		garrison
+		residence
+		location
+		leftTributary
+		type
+		leaderName
+		doctoralStudent
+		writer
+		stateOfOrigin
+		occupation
+		hometown
+		locationCountry
+		militaryBranch
+		format
+		team
+		league
+		relative
+		musicalBand
+		manufacturer
+		company
+		owner
+		associatedBand
+		computingPlatform
+		starring
+		campus
+		voice
+		state
+		academicAdvisor
+		citizenship
+		network
+		isPartOfMilitaryConflict
+		leader
+		distributor
+		university
+		coach
+		origin
+		binomialAuthority
+		instrument
+		canonizedBy
+		distributingCompany
+		notableCommander
+		commander
+		channel
+
+Which caves have more than 3 entrances?
+	pattern:
+		[[det]] entrance
+	relation:
+		routeEnd
+
+Which Chess players died in the same place they were born in?
+	pattern:
+		[[adj]] died in
+		[[num]] born
+		[[pro]] died in
+		born [[con]]
+		died [[adj]]
+		died [[det]]
+		died [[prp]]
+		died in
+	relation:
+		college
+		spouse
+		draftTeam
+		formerTeam
+		parent
+		birthPlace
+		predecessor
+		training
+		doctoralAdvisor
+		successor
+		debutTeam
+		placeOfBurial
+		country
+		battle
+		education
+		almaMater
+		knownFor
+		influencedBy
+		associatedMusicalArtist
+		restingPlace
+		deathPlace
+		majorShrine
+		managerClub
+		residence
+		hometown
+		team
+		league
+		associatedBand
+		academicAdvisor
+		university
+		instrument
+
+		college
+		party
+		religion
+		spouse
+		draftTeam
+		formerTeam
+		parent
+		birthPlace
+		predecessor
+		training
+		award
+		debutTeam
+		relation
+		country
+		education
+		almaMater
+		knownFor
+		nationality
+		associatedMusicalArtist
+		deathPlace
+		region
+		highschool
+		managerClub
+		residence
+		occupation
+		hometown
+		militaryBranch
+		team
+		league
+		associatedBand
+
+Which countries have more than ten caves?
+	pattern:
+		[[adj]] countries [[adj]]
+		[[num]] countries
+		countries [[adj]]
+	relation:
+		country
+		regionServed
+
+Which countries have more than two official languages?
+	pattern:
+		[[num]] countries
+	relation:
+		country
+		regionServed
+
+Which films starring Clint Eastwood did he direct himself?
+	pattern:
+		[[num]] starring [[con]]
+	relation:
+		musicComposer
+		producer
+		narrator
+		editing
+		author
+		director
+		cinematography
+		writer
+		starring
+
+Which mountain is the highest after the Annapurna?
+	pattern:
+		[[adj]] highest
+		[[det]] highest
+		[[det]] mountain
+		[[det]] mountain [[det]]
+	relation:
+		locatedInArea
+		mountainRange
+		country
+		parentMountainPeak
+		nationality
+		language
+		location
+
+		locatedInArea
+		mountainRange
+		country
+		city
+		region
+		state
+
+Which movies did Kurosawa direct?
+	pattern:
+		[[adj]] did
+		[[adj]] movie
+		[[adj]] movies
+		[[adj]] movies [[adj]]
+		[[con]] di
+		[[con]] did
+		[[con]] did [[det]]
+		[[det]] di
+		[[det]] did
+		[[det]] movie
+		[[det]] movies
+		[[det]] movies [[con]]
+		[[mod]] direct
+		[[num]] movie
+		[[num]] movies
+		[[num]] movies [[con]]
+		[[pro]] did
+		[[pro]] did [[con]]
+		[[prp]] movie
+		did
+		did [[adj]]
+		did [[con]]
+		did [[det]]
+		did [[num]]
+		did [[pro]]
+		did [[prp]]
+		es [[con]]
+		movies [[adj]]
+		movies [[con]]
+	relation:
+		president
+		party
+		spouse
+		formerTeam
+		birthPlace
+		successor
+		country
+		trainer
+		almaMater
+		nationality
+		influencedBy
+		associatedMusicalArtist
+		deathPlace
+		region
+		residence
+		team
+		associatedBand
+		citizenship
+
+		college
+		spouse
+		musicComposer
+		draftTeam
+		formerTeam
+		birthPlace
+		producer
+		doctoralAdvisor
+		award
+		debutTeam
+		narrator
+		editing
+		employer
+		education
+		author
+		almaMater
+		knownFor
+		headquarter
+		nationality
+		associatedMusicalArtist
+		board
+		director
+		deathPlace
+		destination
+		cinematography
+		managerClub
+		residence
+		location
+		writer
+		occupation
+		team
+		league
+		associatedBand
+		starring
+		mouthPlace
+		mouthMountain
+
+		prospectTeam
+		president
+		college
+		party
+		religion
+		keyPerson
+		tenant
+		deputy
+		spouse
+		partner
+		place
+		musicComposer
+		draftTeam
+		portrayer
+		formerTeam
+		parent
+		routeStart
+		rightTributary
+		vicePresident
+		birthPlace
+		predecessor
+		training
+		designer
+		locatedInArea
+		field
+		developer
+		currentPartner
+		producer
+		foundedBy
+		bandMember
+		doctoralAdvisor
+		successor
+		parentCompany
+		album
+		award
+		executiveProducer
+		designCompany
+		capital
+		broadcastNetwork
+		debutTeam
+		targetAirport
+		province
+		appointer
+		relation
+		mountainRange
+		presenter
+		country
+		architect
+		formerBandMember
+		battle
+		hubAirport
+		isPartOf
+		subsidiary
+		locationCity
+		primeMinister
+		monarch
+		recordLabel
+		sisterStation
+		employer
+		largestCity
+		education
+		parentMountainPeak
+		trainer
+		creator
+		child
+		militaryUnit
+		almaMater
+		routeJunction
+		knownFor
+		artist
+		headquarter
+		operatedBy
+		distributingLabel
+		broadcastArea
+		routeEnd
+		headquarters
+		relatedMeanOfTransportation
+		nationality
+		source
+		whaDraftTeam
+		owningCompany
+		influencedBy
+		associatedMusicalArtist
+		governor
+		crosses
+		city
+		chancellor
+		affiliation
+		influenced
+		foundationPlace
+		board
+		restingPlace
+		deathPlace
+		destination
+		language
+		regionServed
+		region
+		riverMouth
+		series
+		highschool
+		relation
+		 
+		ground
+		sourceCountry
+		sourcePlace
+		publisher
+		musicalArtist
+		district
+		significantBuilding
+		managerClub
+		product
+		garrison
+		residence
+		location
+		leftTributary
+		type
+		leaderName
+		doctoralStudent
+		family
+		writer
+		stateOfOrigin
+		occupation
+		hometown
+		locationCountry
+		militaryBranch
+		team
+		league
+		relative
+		sourceMountain
+		musicalBand
+		mouthCountry
+		manufacturer
+		company
+		owner
+		associatedBand
+		computingPlatform
+		starring
+		campus
+		state
+		academicAdvisor
+		citizenship
+		network
+		isPartOfMilitaryConflict
+		distributor
+		origin
+		binomialAuthority
+		instrument
+		distributingCompany
+		commander
+
+Which museum exhibits The Scream by Munch?
+	pattern:
+		[[adj]] exhibit
+		[[adj]] museum
+		[[det]] museum
+		[[det]] museum [[det]]
+	relation:
+		birthPlace
+
+		location
+
+Which of Tim Burton's films had the highest budget?
+	pattern:
+		[[adj]] film
+		s film
+	relation:
+		spouse
+		notableWork
+		musicComposer
+		birthPlace
+		producer
+		award
+		narrator
+		editing
+		country
+		author
+		knownFor
+		director
+		deathPlace
+		cinematography
+		location
+		writer
+		starring
+		distributor
+
+Which poet wrote the most books?
+	pattern:
+		[[num]] books
+	relation:
+
+Which presidents were born in 1945?
+	pattern:
+		[[det]] president
+	relation:
+		president
+		party
+		keyPerson
+		birthPlace
+		successor
+		country
+		employer
+		education
+		almaMater
+		knownFor
+		nationality
+		deathPlace
+		residence
+		leaderName
+		occupation
+
+Which rockets were launched from Baikonur?
+	pattern:
+		launched [[con]]
+		launched [[det]]
+		launched [[prp]]
+	relation:
+		builder
+		country
+		launchSite
+		relatedMeanOfTransportation
+		city
+		assembly
+		product
+		location
+
+Which ships were called after Benjamin Franklin?
+	pattern:
+		called [[prp]]
+		led [[adj]]
+		led [[con]]
+		led after
+	relation:
+		religion
+		spouse
+		draftTeam
+		formerTeam
+		parent
+		birthPlace
+		successor
+		placeOfBurial
+		country
+		knownFor
+		nationality
+		influencedBy
+		associatedMusicalArtist
+		influenced
+		deathPlace
+		managerClub
+		militaryBranch
+		team
+		league
+		associatedBand
+
+		president
+		college
+		party
+		religion
+		deputy
+		spouse
+		musicComposer
+		draftTeam
+		builder
+		formerTeam
+		parent
+		birthPlace
+		predecessor
+		training
+		producer
+		bandMember
+		successor
+		parentCompany
+		award
+		debutTeam
+		placeOfBurial
+		narrator
+		editing
+		country
+		battle
+		primeMinister
+		education
+		trainer
+		author
+		almaMater
+		knownFor
+		artist
+		headquarter
+		otherParty
+		nationality
+		owningCompany
+		influencedBy
+		associatedMusicalArtist
+		influenced
+		director
+		restingPlace
+		deathPlace
+		destination
+		region
+		assembly
+		ground
+		cinematography
+		managerClub
+		product
+		residence
+		writer
+		hometown
+		militaryBranch
+		team
+		league
+		associatedBand
+		starring
+		network
+		leader
+		university
+		commander
+
+Which software has been developed by organizations founded in California?
+	pattern:
+		[[adj]] developed by
+	relation:
+		tenant
+		spouse
+		developer
+		executiveProducer
+		author
+		operatedBy
+		influencedBy
+		publisher
+		manufacturer
+		computingPlatform
+		distributor
+
+Which television shows were created by John Cleese?
+	pattern:
+		[[adj]] created by
+	relation:
+		party
+		composer
+		notableWork
+		musicComposer
+		designer
+		developer
+		producer
+		executiveProducer
+		narrator
+		editing
+		subsidiary
+		creator
+		author
+		knownFor
+		associatedMusicalArtist
+		director
+		publisher
+		cinematography
+		writer
+		company
+		associatedBand
+		starring
+		network
+
+Who created the comic Captain America?
+	pattern:
+		[[adj]] cap
+	relation:
+		formerTeam
+		birthPlace
+		capital
+		debutTeam
+		country
+		battle
+		isPartOf
+		largestCity
+		militaryUnit
+		almaMater
+		nationality
+		restingPlace
+		deathPlace
+		managerClub
+		militaryBranch
+		team
+		state
+
+Who designed the Brooklyn Bridge?
+	pattern:
+		designed [[det]]
+	relation:
+		birthPlace
+		designer
+		producer
+		designCompany
+		architect
+		artist
+		significantBuilding
+		manufacturer
+		instrument
+
+Who developed Minecraft?
+	pattern:
+		developed [[con]]
+	relation:
+		tenant
+		spouse
+		developer
+		executiveProducer
+		author
+		operatedBy
+		influencedBy
+		publisher
+		manufacturer
+		computingPlatform
+		distributor
+
+Who developed the video game World of Warcraft?
+	pattern:
+		[[det]] developed
+		developed [[con]]
+	relation:
+		tenant
+		spouse
+		developer
+		executiveProducer
+		author
+		operatedBy
+		influencedBy
+		publisher
+		manufacturer
+		computingPlatform
+		distributor
+
+Who is the Formula 1 race driver with the most races?
+	pattern:
+		[[adj]] drive
+		[[det]] driver
+	relation:
+		president
+		spouse
+		formerTeam
+		trainer
+
+Who is the founder of Penguin Books?
+	pattern:
+		[[adj]] books
+		[[num]] books
+	relation:
+
+Who is the mayor of Berlin?
+	pattern:
+		[[adj]] mayor
+	relation:
+		birthPlace
+		deathPlace
+		region
+		residence
+
+Who is the owner of Rolls-Royce?
+	pattern:
+		[[con]] owner of
+		[[det]] owner [[con]]
+		[[det]] owner [[det]]
+		owner of
+	relation:
+		subsidiary
+		knownFor
+		service
+		owningCompany
+		occupation
+		owner
+
+Who produced films starring Natalie Portman?
+	pattern:
+		[[con]] starring
+		[[num]] starring [[con]]
+	relation:
+		musicComposer
+		producer
+		narrator
+		editing
+		author
+		director
+		cinematography
+		writer
+		starring
+
+Who produced the most films?
+	pattern:
+		[[det]] produced
+		produced [[con]]
+	relation:
+		musicComposer
+		developer
+		producer
+		successor
+		parentCompany
+		narrator
+		editing
+		recordLabel
+		creator
+		author
+		artist
+		nationality
+		associatedMusicalArtist
+		director
+		assembly
+		publisher
+		musicalArtist
+		cinematography
+		writer
+		musicalBand
+		manufacturer
+		company
+		associatedBand
+		computingPlatform
+		starring
+		network
+		distributor
+
+Who produces Orangina?
+	pattern:
+		[[con]] produce
+	relation:
+		spouse
+		musicComposer
+		developer
+		producer
+		successor
+		parentCompany
+		province
+		narrator
+		editing
+		country
+		isPartOf
+		recordLabel
+		creator
+		author
+		artist
+		nationality
+		associatedMusicalArtist
+		foundationPlace
+		director
+		assembly
+		publisher
+		musicalArtist
+		cinematography
+		location
+		writer
+		musicalBand
+		manufacturer
+		company
+		associatedBand
+		computingPlatform
+		starring
+		state
+		network
+		distributor
+
+Who was called Frank The Tank?
+	pattern:
+		led [[adj]]
+	relation:
+		president
+		college
+		party
+		religion
+		deputy
+		spouse
+		musicComposer
+		draftTeam
+		builder
+		formerTeam
+		parent
+		birthPlace
+		predecessor
+		training
+		producer
+		bandMember
+		successor
+		parentCompany
+		award
+		debutTeam
+		placeOfBurial
+		narrator
+		editing
+		country
+		battle
+		primeMinister
+		education
+		trainer
+		author
+		almaMater
+		knownFor
+		artist
+		headquarter
+		otherParty
+		nationality
+		owningCompany
+		influencedBy
+		associatedMusicalArtist
+		influenced
+		director
+		restingPlace
+		deathPlace
+		destination
+		region
+		assembly
+		ground
+		cinematography
+		managerClub
+		product
+		residence
+		writer
+		hometown
+		militaryBranch
+		team
+		league
+		associatedBand
+		starring
+		network
+		leader
+		university
+		commander
+
+Who was John F. Kennedy's vice president?
+	pattern:
+		[[adj]] president
+		[[con]] president
+		[[det]] president
+		[[det]] vice president
+		[[num]] president
+	relation:
+		president
+		party
+		keyPerson
+		birthPlace
+		successor
+		country
+		employer
+		education
+		almaMater
+		knownFor
+		nationality
+		deathPlace
+		residence
+		leaderName
+		occupation
+
+Who was married to president Chirac?
+	pattern:
+		[[det]] president
+		[[det]] president [[con]]
+		president [[det]]
+	relation:
+		president
+		party
+		keyPerson
+		birthPlace
+		successor
+		country
+		employer
+		education
+		almaMater
+		knownFor
+		nationality
+		deathPlace
+		residence
+		leaderName
+		occupation
+
+Who was the 16th president of the United States?
+	pattern:
+		[[con]] president of
+		president [[det]]
+	relation:
+		president
+		party
+		keyPerson
+		birthPlace
+		successor
+		country
+		employer
+		education
+		almaMater
+		knownFor
+		nationality
+		deathPlace
+		residence
+		leaderName
+		occupation
+
+Who was the father of Queen Elizabeth II?
+	pattern:
+		[[adj]] father [[con]]
+	relation:
+		parent
+		birthPlace
+		predecessor
+		successor
+		relation
+		recordLabel
+		child
+		almaMater
+		knownFor
+		influencedBy
+		associatedMusicalArtist
+		team
+		relative
+		associatedBand
+
+Who wrote the lyrics for the Polish national anthem?
+	pattern:
+		[[adj]] anthem
+		[[det]] anthem
+		[[det]] wrote
+		wrote [[con]]
+		wrote [[prp]]
+	relation:
+		anthem
+
+		president
+		spouse
+		notableWork
+		parent
+		birthPlace
+		predecessor
+		doctoralAdvisor
+		successor
+		primeMinister
+		child
+		knownFor
+		influencedBy
+		associatedMusicalArtist
+		influenced
+		deathPlace
+		occupation
+		associatedBand
