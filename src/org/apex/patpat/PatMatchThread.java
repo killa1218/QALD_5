@@ -75,6 +75,7 @@ public abstract class PatMatchThread extends Thread {
 						for(String range : ptn.getRanges()){
 							if(data.length() != 0)data += ",";
 							data += "(" + stc + "," + ptn.toString() + "," + relation + "," + domain + "," + range + "," + "1)";
+							writeCount ++;
 						}
 					}
 				}
@@ -86,6 +87,7 @@ public abstract class PatMatchThread extends Thread {
 						for(String range : ptn.getRanges()){
 							if(data.length() != 0)data += ",";
 							data += "(" + stc + "," + ptn.toString() + "," + relation + "," + domain + "," + range + "," + "0)";
+							writeCount ++;
 						}
 					}
 				}
