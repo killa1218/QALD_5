@@ -36,15 +36,22 @@ public abstract class PatMatchThread extends Thread {
 	//'y': match all ok. 'n': not match at all. 'u': undeterminded.
 	
 	protected void matchPattern() throws SQLException{
-		String data = "";
+		StringBuilder data = new StringBuilder();
 		char state = isMatched(stc, ptn);
+		int count = 0;
 		
 		if(state == 'y'){
-			for(String relation : ptn.getRelations()){
-				for(String domain : ptn.getDomains()){
-					for(String range : ptn.getRanges()){
-						if(data.length() != 0)data += ",";
-						data += "(" + stc + "," + ptn.toString() + "," + relation + "," + domain + "," + range + "," + "1)";
+			String[] relationArr = ptn.getRelations();
+			System.out.println("relation: " + relationArr.length);
+			for(String relation : relationArr){
+				String[] domainArr = ptn.getDomains();
+				System.out.println("domain: " + domainArr.length);
+				for(String domain : domainArr){
+					String[] rangeArr = ptn.getRanges();
+					System.out.println("range: " + rangeArr.length);
+					for(String range : rangeArr){
+						if(data.length() != 0)data.append(',');
+						data.append("(\"").append(stc).append("\",\"").append(ptn.toString()).append("\",\"").append(relation).append("\",\"").append(domain).append("\",\"").append(range).append("\",").append("1)");
 					}
 				}
 			}
@@ -54,28 +61,64 @@ public abstract class PatMatchThread extends Thread {
 			for(String relation : ptn.getRelations()){
 				for(String domain : ptn.getDomains()){
 					for(String range : ptn.getRanges()){
-						if(data.length() != 0)data += ",";
-						data += "(" + stc + "," + ptn.toString() + "," + relation + "," + domain + "," + range + "," + "0)";
+						if(data.length() != 0)data.append(',');
+						data.append("(\"").append(stc).append("\",\"").append(ptn.toString()).append("\",\"").append(relation).append("\",\"").append(domain).append("\",\"").append(range).append("\",").append("1)");
 					}
 				}
 			}
 			System.out.println(stc + " : " + ptn.toString());
 		}
+//		if(state == 'y'){
+//			for(String relation : ptn.getRelations()){
+//				for(String domain : ptn.getDomains()){
+//					for(String range : ptn.getRanges()){
+//						if(data.length() != 0)data += ",";
+//						data += "(" + stc + "," + ptn.toString() + "," + relation + "," + domain + "," + range + "," + "1)";
+//					}
+//				}
+//			}
+//			System.out.println(stc + " : " + ptn.toString());
+//		}
+//		else if(state == 'u'){
+//			for(String relation : ptn.getRelations()){
+//				for(String domain : ptn.getDomains()){
+//					for(String range : ptn.getRanges()){
+//						if(data.length() != 0)data += ",";
+//						data += "(" + stc + "," + ptn.toString() + "," + relation + "," + domain + "," + range + "," + "0)";
+//					}
+//				}
+//			}
+//			System.out.println(stc + " : " + ptn.toString());
+//		}
 	}
 	
 	protected void matchPatterns() throws SQLException{
 		int writeCount = 0;
-		String data = "";
+		StringBuilder data = new StringBuilder();
 		
 		for(PatPattern ptn : ptnarr){
 			char state = isMatched(stc, ptn);
+			
 			if(state == 'y'){
-				for(String relation : ptn.getRelations()){
-					for(String domain : ptn.getDomains()){
-						for(String range : ptn.getRanges()){
-							if(data.length() != 0)data += ",";
-							data += "(" + stc + "," + ptn.toString() + "," + relation + "," + domain + "," + range + "," + "1)";
+				String[] relationArr = ptn.getRelations();
+				System.out.println("relation: " + relationArr.length);
+				for(String relation : relationArr){
+					String[] domainArr = ptn.getDomains();
+					System.out.println("domain: " + domainArr.length);
+					for(String domain : domainArr){
+						String[] rangeArr = ptn.getRanges();
+						System.out.println("range: " + rangeArr.length);
+						for(String range : rangeArr){
+							if(data.length() != 0)data.append(',');
+							data.append("(\"").append(stc).append("\",\"").append(ptn.toString()).append("\",\"").append(relation).append("\",\"").append(domain).append("\",\"").append(range).append("\",").append("1)");
 							writeCount ++;
+							if(writeCount != 0 && writeCount % 1000 == 0){
+								System.out.println(writeCount);
+								//Write data for every 1000 items
+								System.out.println(new StringBuilder().append("insert into `patty`.`match_result values` ").append(data).toString());
+								stmt.executeUpdate(new StringBuilder().append("insert into `patty`.`match_result values` ").append(data).toString());
+								data = new StringBuilder();
+							}
 						}
 					}
 				}
@@ -85,8 +128,8 @@ public abstract class PatMatchThread extends Thread {
 				for(String relation : ptn.getRelations()){
 					for(String domain : ptn.getDomains()){
 						for(String range : ptn.getRanges()){
-							if(data.length() != 0)data += ",";
-							data += "(" + stc + "," + ptn.toString() + "," + relation + "," + domain + "," + range + "," + "0)";
+							if(data.length() != 0)data.append(',');
+							data.append("(\"").append(stc).append("\",\"").append(ptn.toString()).append("\",\"").append(relation).append("\",\"").append(domain).append("\",\"").append(range).append("\",").append("1)");
 							writeCount ++;
 						}
 					}
@@ -94,16 +137,12 @@ public abstract class PatMatchThread extends Thread {
 				System.out.println(stc + " : " + ptn.toString());
 			}
 			
-			if(writeCount != 0 && writeCount % 1000 == 0){
-				//Write data for every 1000 items
-				System.out.println("insert into `patty`.`match_result values` " + data);
-				stmt.executeUpdate("insert into `patty`.`match_result values` " + data);
-				data = "";
-			}
 		}
+		
+		System.out.println(new StringBuilder().append("insert into `patty`.`match_result values` ").append(data).toString());
 
 		if(data.length() != 0){
-			stmt.executeUpdate("insert into `patty`.`match_result values` " + data);
+			stmt.executeUpdate(new StringBuilder().append("insert into `patty`.`match_result values` ").append(data).toString());
 		}
 	}
 	

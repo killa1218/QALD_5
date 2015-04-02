@@ -24,21 +24,24 @@ public class PatPattern {
 	}
 	
 	public String[] getRelations(){
-		//still has problem
 		ResultSet rs = null;
 		LinkedList<String> resList = new LinkedList<String>();
-		try {
-			rs = stmt.executeQuery("select `relation` from `patty`.`dbpedia_relation_paraphrases` where `pattern`=\"" + pattern + "\"");
-			while(rs.next()){
-				resList.add(rs.getString(1));
-			}
-			return resList.toArray(new String[0]);
-		} catch (SQLException e) {
-			System.out.println("ERROR: Geting relation of " + pattern + " error!");
-			e.printStackTrace();
-			return null;
-		}
 		
+		for(String keyWord : this.getKeyWords(false)){
+			if(!keyWord.equals("")){
+				try {
+					rs = stmt.executeQuery("select distinct `relation` from `patty`.`dbpedia_relation_paraphrases` where `pattern` like \"%" + keyWord + "%\"");
+					while(rs.next()){
+						resList.add(rs.getString(1));
+					}
+				} catch (SQLException e) {
+					System.out.println("ERROR: Geting relation of " + pattern + " error!");
+					e.printStackTrace();
+					return null;
+				}
+			}
+		}
+		return resList.toArray(new String[0]);
 	}
 	
 	public String[] getRelationsOf(String kb){
@@ -71,16 +74,20 @@ public class PatPattern {
 	
 	public Pattern getRegex(boolean doLemmatize){
 		if(doLemmatize){
-			
+			if(ptn != null){
+				return ptn;
+			}
+			else{
+				return ptn = Pattern.compile(Pattern.compile("\\s*\\[\\[\\w+\\]\\]\\s*").matcher(PatLemmatizer.lemmatize(pattern)).replaceAll("(.*)"), Pattern.DOTALL + Pattern.CASE_INSENSITIVE);
+			}
 		}
 		else{
-			
-		}
-		if(ptn != null){
-			return ptn;
-		}
-		else{
-			return ptn = Pattern.compile(Pattern.compile("\\s*\\[\\[\\w+\\]\\]\\s*").matcher(pattern).replaceAll("(.*)"), Pattern.DOTALL + Pattern.CASE_INSENSITIVE);
+			if(ptn != null){
+				return ptn;
+			}
+			else{
+				return ptn = Pattern.compile(Pattern.compile("\\s*\\[\\[\\w+\\]\\]\\s*").matcher(pattern).replaceAll("(.*)"), Pattern.DOTALL + Pattern.CASE_INSENSITIVE);			
+			}
 		}
 	}
 	
@@ -88,15 +95,22 @@ public class PatPattern {
 		return getRegex(true);
 	}
 	
-	public String[] getKeyWords(){
+	public String[] getKeyWords(boolean doLemmatization){
 		// Those whose POS tag is JJ or JJR or JJS or NN or NNP or NNS or NNPS or MD or FW or LS or RB or RBR or RBS or RP or VB or VBD or VBG or VBN or VBP or VBZ or WDT or WP or WP$ or WRB
 		LinkedList<String> resList = new LinkedList<String>();
+		List<TaggedWord> rl = null;
 		
 		if(tagger == null){
 			tagger = new MaxentTagger("./lib/models/english-left3words-distsim.tagger");
 		}
-		
-		List<TaggedWord> rl = tagger.apply(new PatSentence(Pattern.compile("\\s*\\[\\[\\w+\\]\\]").matcher(PatLemmatizer.lemmatize(pattern)).replaceAll("")).toList());
+
+		if(doLemmatization){
+			rl = tagger.apply(new PatSentence(Pattern.compile("\\s*\\[\\[\\w+\\]\\]").matcher(PatLemmatizer.lemmatize(pattern)).replaceAll("")).toList());
+			
+		}
+		else{
+			rl = tagger.apply(new PatSentence(Pattern.compile("\\s*\\[\\[\\w+\\]\\]").matcher(pattern).replaceAll("")).toList());
+		}
 		
 		for(TaggedWord tw : rl){
 			char firstChar = tw.tag().charAt(0);
@@ -107,6 +121,50 @@ public class PatPattern {
 		
 		return resList.toArray(new String[0]);
 	}
+	
+	public String[] getKeyWords(){
+		return getKeyWords(true);
+	}
+	
+	public String[] getDomains(){
+		ResultSet rs = null;
+		
+		try {
+			rs = stmt.executeQuery("select distinct `domain` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
+			LinkedList<String> resList = new LinkedList<String>();
+			while(rs.next()){
+				resList.add(rs.getString(1));
+			}
+			return resList.toArray(new String[0]);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	public String[] getRanges(){
+		ResultSet rs = null;
+		
+		try {
+			rs = stmt.executeQuery("select distinct `range_` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
+			LinkedList<String> resList = new LinkedList<String>();
+			while(rs.next()){
+				resList.add(rs.getString(1));
+			}
+			return resList.toArray(new String[0]);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	@Override
+	public String toString(){
+		return pattern;
+	}
+	
 	
 //	public Type[] getTypeArray() throws SQLException{
 //		if(types != null){
@@ -142,46 +200,6 @@ public class PatPattern {
 //		
 //		return false;
 //	}
-	
-	public String[] getDomains(){
-		ResultSet rs = null;
-		
-		try {
-			rs = stmt.executeQuery("select `domain` from `wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
-			LinkedList<String> resList = new LinkedList<String>();
-			while(rs.next()){
-				resList.add(rs.getString(1));
-			}
-			return resList.toArray(new String[0]);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-		
-	}
-	
-	public String[] getRanges(){
-		ResultSet rs = null;
-		
-		try {
-			rs = stmt.executeQuery("select `range_` from `wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
-			LinkedList<String> resList = new LinkedList<String>();
-			while(rs.next()){
-				resList.add(rs.getString(1));
-			}
-			return resList.toArray(new String[0]);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-		
-	}
-	
-	@Override
-	public String toString(){
-		return pattern;
-	}
-	
 //	public static void pickoutPatterns(String fileName) throws SQLException, IOException{
 //		File f = null;
 //		BufferedWriter bw = null;

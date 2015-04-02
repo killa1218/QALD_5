@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import java.util.HashSet;
 
 import org.apex.patpat.PatPattern;
@@ -32,7 +31,6 @@ public class RegexMatchTest {
 		}
 		
 		System.out.println("Pattern Number:" + ptnSet.size());
-		System.out.println(new Date().toString());
 		
 		ptnarr = new PatPattern[ptnSet.size()];
 		
@@ -42,7 +40,6 @@ public class RegexMatchTest {
 		}
 		
 		System.out.println("PatPattern Array built.");
-		System.out.println(new Date().toString());
 		
 		BufferedReader br = new BufferedReader(new FileReader(new File("./data/questions.txt")));
 		String question = null;
