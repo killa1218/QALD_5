@@ -42,6 +42,7 @@ public class PatPattern {
 	}
 	
 	public String[] getRelationsOf(String kb){
+		//still has problem
 		String table = "dbpedia";
 		
 		switch(kb.toLowerCase()){
@@ -73,7 +74,7 @@ public class PatPattern {
 			return ptn;
 		}
 		else{
-			return ptn = Pattern.compile(Pattern.compile("\\[\\[\\w+\\]\\]").matcher(pattern).replaceAll("(.*)"), Pattern.DOTALL + Pattern.CASE_INSENSITIVE);
+			return ptn = Pattern.compile(Pattern.compile("\\s*\\[\\[\\w+\\]\\]\\s*").matcher(pattern).replaceAll("(.*)"), Pattern.DOTALL + Pattern.CASE_INSENSITIVE);
 		}
 	}
 	
@@ -226,13 +227,16 @@ public class PatPattern {
 //		Matcher m = ptn.matcher("Give me all movies directed by Francis Ford Coppola.");
 //		while(m.find()){
 //			System.out.println(m.groupCount());
-//			System.out.println(m.group(1));			
+//			System.out.println(m.group(1));
 //		}
-//			System.out.println(new Date().toString());			
+//			System.out.println(new Date().toString());
 		
 		PatPattern ptn = new PatPattern("best known for [[prp]] role in");
 		System.out.println(ptn.getRegex().toString());
-		
+		for(String wd : ptn.getKeyWords()){
+			System.out.println(wd);
+		}
+
 	}
 	
 }
