@@ -1,8 +1,8 @@
 package org.apex.patpat;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -14,13 +14,15 @@ import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
 public class PatPattern {
 	public static MaxentTagger tagger = null;
-	private static Statement stmt = new MySQLConnector().connect();
+	private static Connection con = new MySQLConnector().getConnection();
+//	private Statement stmt = null;
 	private Pattern ptn = null;
 //	private Type[] types = null;
 	private String pattern;
 
 	public PatPattern(String pattern) throws SQLException{
 		this.pattern = pattern;
+//		this.stmt = con.createStatement();
 	}
 	
 	public String[] getRelations(){
@@ -30,13 +32,16 @@ public class PatPattern {
 		for(String keyWord : this.getKeyWords(false)){
 			if(!keyWord.equals("")){
 				try {
-					rs = stmt.executeQuery("select distinct `relation` from `patty`.`dbpedia_relation_paraphrases` where `pattern` like \"%" + keyWord + "%\"");
+					rs = con.createStatement().executeQuery("select distinct `relation` from `patty`.`dbpedia_relation_paraphrases` where `pattern` like \"%" + keyWord + "%\"");
 					while(rs.next()){
 						resList.add(rs.getString(1));
 					}
 				} catch (SQLException e) {
 					System.out.println("ERROR: Geting relation of " + pattern + " error!");
 					e.printStackTrace();
+					return null;
+				} catch (NullPointerException e){
+					System.out.println("ERROR: NullPointer: " + rs + ". Pattern: " + pattern);
 					return null;
 				}
 			}
@@ -60,13 +65,16 @@ public class PatPattern {
 		ResultSet rs = null;
 		LinkedList<String> resList = new LinkedList<String>();
 		try {
-			rs = stmt.executeQuery("select `relation` from " + table + " where `pattern`=\"" + pattern + "\"");
+			rs = con.createStatement().executeQuery("select `relation` from " + table + " where `pattern`=\"" + pattern + "\"");
 			while(rs.next()){
 				resList.add(rs.getString(1));
 			}
 			return resList.toArray(new String[0]);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
+		} catch (NullPointerException e){
+			System.out.println("ERROR: NullPointer: " + rs + ". Pattern: " + pattern);
 			return null;
 		}
 		
@@ -130,7 +138,7 @@ public class PatPattern {
 		ResultSet rs = null;
 		
 		try {
-			rs = stmt.executeQuery("select distinct `domain` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
+			rs = con.createStatement().executeQuery("select distinct `domain` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
 			LinkedList<String> resList = new LinkedList<String>();
 			while(rs.next()){
 				resList.add(rs.getString(1));
@@ -138,6 +146,9 @@ public class PatPattern {
 			return resList.toArray(new String[0]);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
+		} catch (NullPointerException e){
+			System.out.println("ERROR: NullPointer: " + rs + ". Pattern: " + pattern);
 			return null;
 		}
 		
@@ -147,7 +158,7 @@ public class PatPattern {
 		ResultSet rs = null;
 		
 		try {
-			rs = stmt.executeQuery("select distinct `range_` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
+			rs = con.createStatement().executeQuery("select distinct `range_` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
 			LinkedList<String> resList = new LinkedList<String>();
 			while(rs.next()){
 				resList.add(rs.getString(1));
@@ -155,6 +166,9 @@ public class PatPattern {
 			return resList.toArray(new String[0]);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
+		} catch (NullPointerException e){
+			System.out.println("ERROR: NullPointer: " + rs + ". Pattern: " + pattern);
 			return null;
 		}
 		
@@ -259,9 +273,9 @@ public class PatPattern {
 //		}
 //			System.out.println(new Date().toString());
 		
-		PatPattern ptn = new PatPattern("ve [[prp]]");
-		System.out.println(ptn.getRegex().toString());
-		for(String wd : ptn.getKeyWords()){
+		PatPattern ptn = new PatPattern("[[mod]] es");
+//		System.out.println(ptn.getRegex().toString());
+		for(String wd : ptn.getRanges()){
 			System.out.println(wd);
 		}
 

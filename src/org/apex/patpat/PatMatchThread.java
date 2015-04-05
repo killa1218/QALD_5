@@ -1,35 +1,40 @@
 package org.apex.patpat;
 
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.apex.util.MySQLConnector;
 
 public abstract class PatMatchThread extends Thread {
+	private static Connection con = new MySQLConnector().getConnection();
 	private boolean matchAllPatterns = false;
 	private String stc = null;
 	private PatPattern ptn = null;
 	private PatPattern[] ptnarr = null;
-	public static Statement stmt = new MySQLConnector().connect();
+	private Statement stmt = null;
 
-	public PatMatchThread(String threadName, String stc){
+	public PatMatchThread(String threadName, String stc) throws SQLException{
 		super(threadName);
 		this.stc = stc;
 		this.matchAllPatterns = true;
+		stmt = con.createStatement();
 	}
 	
-	public PatMatchThread(String threadName, String stc, PatPattern ptn) {
+	public PatMatchThread(String threadName, String stc, PatPattern ptn) throws SQLException {
 		super(threadName);
 		this.stc = stc;
 		this.ptn = ptn;
+		stmt = con.createStatement();
 	}
 	
-	public PatMatchThread(String threadName, String stc, PatPattern[] ptnarr) {
+	public PatMatchThread(String threadName, String stc, PatPattern[] ptnarr) throws SQLException {
 		super(threadName);
 		this.matchAllPatterns = true;
 		this.ptnarr = ptnarr;
 		this.stc = stc;
+		stmt = con.createStatement();
 	}
 	
 	protected abstract char isMatched(String stc, PatPattern ptn);
@@ -41,13 +46,13 @@ public abstract class PatMatchThread extends Thread {
 		
 		if(state == 'y'){
 			String[] relationArr = ptn.getRelations();
-			System.out.println("relation: " + relationArr.length);
+//			System.out.println("relation: " + relationArr.length);
 			for(String relation : relationArr){
 				String[] domainArr = ptn.getDomains();
-				System.out.println("domain: " + domainArr.length);
+//				System.out.println("domain: " + domainArr.length);
 				for(String domain : domainArr){
 					String[] rangeArr = ptn.getRanges();
-					System.out.println("range: " + rangeArr.length);
+//					System.out.println("range: " + rangeArr.length);
 					for(String range : rangeArr){
 						if(data.length() != 0)data.append(',');
 						data.append("(\"").append(stc).append("\",\"").append(ptn.toString()).append("\",\"").append(relation).append("\",\"").append(domain).append("\",\"").append(range).append("\",").append("1)");

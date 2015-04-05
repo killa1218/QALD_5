@@ -19,7 +19,7 @@ public class RegexMatchTest {
 		// TODO 自动生成的方法存根
 		PatPattern[] ptnarr = null;
 		HashSet<String> ptnSet = new HashSet<String>();
-		Statement stmt = new MySQLConnector().connect();
+		Statement stmt = new MySQLConnector().getStatement();
 		ResultSet rs = stmt.executeQuery("select `patterntext` from `patty`.`wikipedia_patterns` where 1");
 		
 		while(rs.next()){
@@ -48,7 +48,7 @@ public class RegexMatchTest {
 			question = br.readLine();
 //			System.out.println(question);
 			if(question != null){
-				new PatRegMatchThread(question, question, ptnarr).start();
+				new PatRegMatchThread(question, question, ptnarr.clone()).start();
 			}
 //			break;
 		}while(question != null);

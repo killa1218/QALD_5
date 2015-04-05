@@ -8,24 +8,41 @@ public class MySQLConnector {
 	private String username = "root";
 	private String password = "";
 	
-	public Statement connect(){
+	public Connection getConnection(){
+		if(con == null){
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+//	        System.out.println("MySQL Driver Loaded!"); 
+			} catch (ClassNotFoundException e) {
+				System.out.println("MySQL Driver Loading Failed!");
+				e.printStackTrace();
+			}//load driver
+			
+			try {
+				con = DriverManager.getConnection(url, username, password);
+//	        System.out.println("MySQL Connected!"); 
+			} catch(SQLException e) {
+				System.out.println("MySQL Connection Error!"); 
+			}//connect
+		}
+		
+		return con;
+	}
+	
+	public Statement getStatement(){
 		Statement stmt = null;
+		if(con == null){
+			this.getConnection();
+		}
 		
 		try {
-	        Class.forName("com.mysql.jdbc.Driver");
-//	        System.out.println("MySQL Driver Loaded!"); 
-	    } catch (ClassNotFoundException e) {
-	        System.out.println("MySQL Driver Loading Failed!");
-	        e.printStackTrace();
-	    }//load driver
+			stmt = con.createStatement();
+		} catch (SQLException e) {
+			// TODO 自动生成的 catch 块
+			System.out.println("ERROR: Get statement error!");
+			e.printStackTrace();
+		}			
 		
-	    try {
-	        con = DriverManager.getConnection(url, username, password);
-	        stmt = con.createStatement();
-//	        System.out.println("MySQL Connected!"); 
-	    } catch(SQLException e) {
-	        System.out.println("MySQL Connection Error!"); 
-	    }//connect
 	    
 		return stmt;		
 	}

@@ -49,7 +49,7 @@ public class DBBuilder {
 			System.out.println(filepath + " is not a directory!");
 		}
 		
-		stmt = new MySQLConnector().connect();
+		stmt = new MySQLConnector().getStatement();
 		
 		if(!existDB("patty")){
 			try {
