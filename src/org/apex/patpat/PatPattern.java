@@ -19,6 +19,7 @@ public class PatPattern {
 	private Pattern ptn = null;
 //	private Type[] types = null;
 	private String pattern;
+	private ResultSet domain_range = null;
 
 	public PatPattern(String pattern) throws SQLException{
 		this.pattern = pattern;
@@ -134,44 +135,43 @@ public class PatPattern {
 		return getKeyWords(true);
 	}
 	
-	public String[] getDomains(){
-		ResultSet rs = null;
-		
-		try {
-			rs = con.createStatement().executeQuery("select distinct `domain` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
-			LinkedList<String> resList = new LinkedList<String>();
-			while(rs.next()){
-				resList.add(rs.getString(1));
+	public String[] getDomains() throws SQLException{
+		if(domain_range == null){
+			try {
+				domain_range = con.createStatement().executeQuery("select distinct `domain`,`range_` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			} catch (NullPointerException e){
+				System.out.println("ERROR: NullPointer: " + domain_range + ". Pattern: " + pattern);
+				return null;
 			}
-			return resList.toArray(new String[0]);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		} catch (NullPointerException e){
-			System.out.println("ERROR: NullPointer: " + rs + ". Pattern: " + pattern);
-			return null;
 		}
+		LinkedList<String> resList = new LinkedList<String>();
+		while(domain_range.next()){
+			resList.add(domain_range.getString(1));
+		}
+		return resList.toArray(new String[0]);
 		
 	}
 	
-	public String[] getRanges(){
-		ResultSet rs = null;
-		
-		try {
-			rs = con.createStatement().executeQuery("select distinct `range_` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
-			LinkedList<String> resList = new LinkedList<String>();
-			while(rs.next()){
-				resList.add(rs.getString(1));
-			}
-			return resList.toArray(new String[0]);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		} catch (NullPointerException e){
-			System.out.println("ERROR: NullPointer: " + rs + ". Pattern: " + pattern);
-			return null;
+	public String[] getRanges() throws SQLException{
+		if(domain_range == null){
+			try {
+				domain_range = con.createStatement().executeQuery("select distinct `domain`,`range_` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			} catch (NullPointerException e){
+				System.out.println("ERROR: NullPointer: " + domain_range + ". Pattern: " + pattern);
+				return null;
+			}			
 		}
-		
+		LinkedList<String> resList = new LinkedList<String>();
+		while(domain_range.next()){
+			resList.add(domain_range.getString(2));
+		}
+		return resList.toArray(new String[0]);
 	}
 	
 	@Override

@@ -26,6 +26,7 @@ public class PatKWordMatchThread extends PatMatchThread {
 	@Override
 	protected char isMatched(String stc, PatPattern ptn) {
 		// TODO 自动生成的方法存根
+		String[] keyWords = ptn.getKeyWords();
 		return 0;
 	}
 

@@ -63,13 +63,21 @@ public abstract class PatMatchThread extends Thread {
 		}
 		else if(state == 'u'){
 			for(String relation : ptn.getRelations()){
-				for(String domain : ptn.getDomains()){
-					for(String range : ptn.getRanges()){
-						if(data.length() != 0)data.append(',');
-						data.append("(\"").append(stc).append("\",\"").append(ptn.toString()).append("\",\"").append(relation).append("\",\"").append(domain).append("\",\"").append(range).append("\",").append("1)");
-					}
+				String[] domains = ptn.getDomains();
+				String[] ranges = ptn.getRanges();
+				
+				for(int i = 0 ; i < domains.length ; i ++){
+					data.append("(\"").append(stc).append("\",\"").append(ptn.toString()).append("\",\"").append(relation).append("\",\"").append(domains[i]).append("\",\"").append(ranges[i]).append("\",").append("1)");
 				}
 			}
+//			for(String relation : ptn.getRelations()){
+//				for(String domain : ptn.getDomains()){
+//					for(String range : ptn.getRanges()){
+//						if(data.length() != 0)data.append(',');
+//						data.append("(\"").append(stc).append("\",\"").append(ptn.toString()).append("\",\"").append(relation).append("\",\"").append(domain).append("\",\"").append(range).append("\",").append("1)");
+//					}
+//				}
+//			}
 			System.out.println(stc + " : " + ptn.toString());
 		}
 //		if(state == 'y'){
@@ -129,12 +137,12 @@ public abstract class PatMatchThread extends Thread {
 			}
 			else if(state == 'u'){
 				for(String relation : ptn.getRelations()){
-					for(String domain : ptn.getDomains()){
-						for(String range : ptn.getRanges()){
-							if(data.length() != 0)data.append(',');
-							data.append("(\"").append(stc).append("\",\"").append(ptn.toString()).append("\",\"").append(relation).append("\",\"").append(domain).append("\",\"").append(range).append("\",").append("1)");
-							writeCount ++;
-						}
+					String[] domains = ptn.getDomains();
+					String[] ranges = ptn.getRanges();
+					
+					for(int i = 0 ; i < domains.length ; i ++){
+						data.append("(\"").append(stc).append("\",\"").append(ptn.toString()).append("\",\"").append(relation).append("\",\"").append(domains[i]).append("\",\"").append(ranges[i]).append("\",").append("1)");
+						writeCount ++;						
 					}
 				}
 				System.out.println(stc + " : " + ptn.toString());
