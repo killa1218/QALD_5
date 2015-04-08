@@ -16,8 +16,9 @@ public class PatRelation {
 		relation = rel;
 	}
 	
-	public String getExactPattern(String kb) throws SQLException{
+	public String[] getExactPatterns(String kb) throws SQLException{
 		ResultSet rs = null;
+		LinkedList<String> list = new LinkedList<String>();
 		if(kb.equals("yago")){
 			rs = con.createStatement().executeQuery("select `relation` from `patty`.`yago_relation_paraphrases` where `relation`=\"" + relation + "\"");
 		}
@@ -25,41 +26,41 @@ public class PatRelation {
 			rs = con.createStatement().executeQuery("select `relation` from `patty`.`dbpedia_relation_paraphrases` where `relation`=\"" + relation + "\"");
 		}
 		while(rs.next()){
-			return rs.getString(1);
-		}
-		
-		return null;
-	}
-	
-	public String getExactPattern() throws SQLException{
-		return getExactPattern("dbpedia");
-	}
-	
-	public String[] getFuzzyPatterns(String kb) throws SQLException{
-		ResultSet rs = null;
-		String extPtn = getExactPattern(kb);
-		String[] keyWords = new PatPattern(extPtn).getKeyWords(false);
-		String queryPtn = "\";$";
-		LinkedList<String> list = new LinkedList<String>();
-		
-		for(String str : keyWords){
-			queryPtn += "%" + str;
-		}
-		
-		queryPtn += "%;$\"";
-		
-		rs = con.createStatement().executeQuery("select `patterntext` from `wikipedia_patterns` where `patterntext` like " + queryPtn);
-		
-		while(rs.next()){
-			String patterns = rs.getString(1);
-			String[] ptns = patterns.split(";$");
-			
-			for(String ptn : ptns){
-				list.add(ptn);
-			}
+			list.add(rs.getString(1));
 		}
 		
 		return list.toArray(new String[0]);
 	}
+	
+	public String[] getExactPatterns() throws SQLException{
+		return getExactPatterns("dbpedia");
+	}
+	
+//	public String[] getFuzzyPatterns(String kb) throws SQLException{
+//		ResultSet rs = null;
+//		String extPtn = getExactPatterns(kb);
+//		String[] keyWords = new PatPattern(extPtn).getKeyWords(false);
+//		String queryPtn = "\";$";
+//		LinkedList<String> list = new LinkedList<String>();
+//		
+//		for(String str : keyWords){
+//			queryPtn += "%" + str;
+//		}
+//		
+//		queryPtn += "%;$\"";
+//		
+//		rs = con.createStatement().executeQuery("select `patterntext` from `wikipedia_patterns` where `patterntext` like " + queryPtn);
+//		
+//		while(rs.next()){
+//			String patterns = rs.getString(1);
+//			String[] ptns = patterns.split(";\\$");
+//			
+//			for(String ptn : ptns){
+//				list.add(ptn);
+//			}
+//		}
+//		
+//		return list.toArray(new String[0]);
+//	}
 
 }

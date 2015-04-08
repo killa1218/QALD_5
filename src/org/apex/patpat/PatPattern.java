@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Pattern;
 
 import org.apex.util.MySQLConnector;
@@ -15,70 +17,119 @@ import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 public class PatPattern {
 	public static MaxentTagger tagger = null;
 	private static Connection con = new MySQLConnector().getConnection();
-//	private Statement stmt = null;
-	private Pattern ptn = null;
 //	private Type[] types = null;
+	
+	private Lock lock = null;
+	
 	private String pattern;
+	private Pattern ptn = null;
 	private ResultSet domain_range = null;
-
+	private String[] relations = null;
+	private String knowledgeBase = "dbpedia";
+	private String[] domains = null;
+	private String[] ranges = null;
+	private String[] keyWords = null;
+	
 	public PatPattern(String pattern) throws SQLException{
 		this.pattern = pattern;
+		lock = new ReentrantLock();
 //		this.stmt = con.createStatement();
 	}
 	
 	public String[] getRelations(){
-		ResultSet rs = null;
-		LinkedList<String> resList = new LinkedList<String>();
-		
-		for(String keyWord : this.getKeyWords(false)){
-			if(!keyWord.equals("")){
-				try {
-					rs = con.createStatement().executeQuery("select distinct `relation` from `patty`.`dbpedia_relation_paraphrases` where `pattern` like \"%" + keyWord + "%\"");
-					while(rs.next()){
-						resList.add(rs.getString(1));
-					}
-				} catch (SQLException e) {
-					System.out.println("ERROR: Geting relation of " + pattern + " error!");
-					e.printStackTrace();
-					return null;
-				} catch (NullPointerException e){
-					System.out.println("ERROR: NullPointer: " + rs + ". Pattern: " + pattern);
-					return null;
-				}
-			}
-		}
-		return resList.toArray(new String[0]);
+		return getRelationsOf("dbpedia");
+//		if(relations == null){
+//			ResultSet rs = null;
+//			LinkedList<String> resList = new LinkedList<String>();
+//			
+//			for(String keyWord : this.getKeyWords(false)){
+//				if(!keyWord.equals("")){
+//					try {
+//						rs = con.createStatement().executeQuery("select distinct `relation` from `patty`.`dbpedia_relation_paraphrases` where `pattern` like \"%" + keyWord + "%\"");
+//						while(rs.next()){
+//							resList.add(rs.getString(1));
+//						}
+//					} catch (SQLException e) {
+//						System.out.println("ERROR: Geting relation of " + pattern + " error!");
+//						e.printStackTrace();
+//						return null;
+//					} catch (NullPointerException e){
+//						System.out.println("ERROR: NullPointer: " + rs + ". Pattern: " + pattern);
+//						return null;
+//					}
+//				}
+//			}
+//			return relations = resList.toArray(new String[0]);			
+//		}
+//		else{
+//			return relations;
+//		}
 	}
 	
 	public String[] getRelationsOf(String kb){
-		//still has problem
-		String table = "dbpedia";
-		
-		switch(kb.toLowerCase()){
-			case "yago":
-				table = "`patty`.`yago_relation_paraphrases`";
-				break;
-			case "dbpedia":
-				table = "`patty`.`dbpedia_relation_paraphrases`";
-				break;
-		}
-		
-		ResultSet rs = null;
-		LinkedList<String> resList = new LinkedList<String>();
-		try {
-			rs = con.createStatement().executeQuery("select `relation` from " + table + " where `pattern`=\"" + pattern + "\"");
-			while(rs.next()){
-				resList.add(rs.getString(1));
+		if(relations == null){
+			lock.lock();
+			System.out.println(pattern + " relation null, locked");
+			
+			try{
+				String table = "`patty`.`" + knowledgeBase + "_relation_paraphrases`";
+				ResultSet rs = null;
+				LinkedList<String> resList = new LinkedList<String>();
+				
+				if(!kb.toLowerCase().equals(knowledgeBase)){
+					switch(kb.toLowerCase()){
+					case "yago":
+						table = "`patty`.`yago_relation_paraphrases`";
+						knowledgeBase = "yago";
+						break;
+					case "dbpedia":
+						table = "`patty`.`dbpedia_relation_paraphrases`";
+						knowledgeBase = "dbpedia";
+						break;
+					}
+				}
+				
+				for(String keyWord : this.getKeyWords(false)){
+					if(!keyWord.equals("")){
+						try {
+							rs = con.createStatement().executeQuery("select distinct `relation` from " + table + " where `pattern` like \"%" + keyWord + "%\"");
+							while(rs.next()){
+								resList.add(rs.getString(1));
+							}
+						} catch (SQLException e) {
+							System.out.println("ERROR: Geting relation of " + pattern + " error!");
+							e.printStackTrace();
+//							return null;
+						} catch (NullPointerException e){
+							System.out.println("ERROR: NullPointer: " + rs + ". Pattern: " + pattern);
+//							return null;
+						}
+					}
+				}
+				
+				return relations = resList.toArray(new String[0]);			
+			} finally {
+				lock.unlock();
+				System.out.println(pattern + " relation unlock");
 			}
-			return resList.toArray(new String[0]);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		} catch (NullPointerException e){
-			System.out.println("ERROR: NullPointer: " + rs + ". Pattern: " + pattern);
-			return null;
+			
+//			try {
+//				rs = con.createStatement().executeQuery("select `relation` from " + table + " where `pattern`=\"" + pattern + "\"");
+//				while(rs.next()){
+//					resList.add(rs.getString(1));
+//				}
+//				return relations = resList.toArray(new String[0]);
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//				return null;
+//			} catch (NullPointerException e){
+//				System.out.println("ERROR: NullPointer: " + rs + ". Pattern: " + pattern);
+//				return null;
+//			}
 		}
-		
+		else{
+			return relations;
+		}
 	}
 	
 	public Pattern getRegex(boolean doLemmatize){
@@ -105,30 +156,43 @@ public class PatPattern {
 	}
 	
 	public String[] getKeyWords(boolean doLemmatization){
-		// Those whose POS tag is JJ or JJR or JJS or NN or NNP or NNS or NNPS or MD or FW or LS or RB or RBR or RBS or RP or VB or VBD or VBG or VBN or VBP or VBZ or WDT or WP or WP$ or WRB
-		LinkedList<String> resList = new LinkedList<String>();
-		List<TaggedWord> rl = null;
-		
-		if(tagger == null){
-			tagger = new MaxentTagger("./lib/models/english-left3words-distsim.tagger");
-		}
-
-		if(doLemmatization){
-			rl = tagger.apply(new PatSentence(Pattern.compile("\\s*\\[\\[\\w+\\]\\]").matcher(PatLemmatizer.lemmatize(pattern)).replaceAll("")).toList());
-			
+		if(keyWords == null){
+//			lock.lock();
+//			System.out.println(pattern + " keywords null, locked");
+//			
+//			try{
+				// Those whose POS tag is JJ or JJR or JJS or NN or NNP or NNS or NNPS or MD or FW or LS or RB or RBR or RBS or RP or VB or VBD or VBG or VBN or VBP or VBZ or WDT or WP or WP$ or WRB
+				LinkedList<String> resList = new LinkedList<String>();
+				List<TaggedWord> rl = null;
+				
+				if(tagger == null){
+					tagger = new MaxentTagger("./lib/models/english-left3words-distsim.tagger");
+				}
+				
+				if(doLemmatization){
+					rl = tagger.apply(new PatSentence(Pattern.compile("\\s*\\[\\[\\w+\\]\\]").matcher(PatLemmatizer.lemmatize(pattern)).replaceAll("")).toList());
+					
+				}
+				else{
+					rl = tagger.apply(new PatSentence(Pattern.compile("\\s*\\[\\[\\w+\\]\\]").matcher(pattern).replaceAll("")).toList());
+				}
+				
+				for(TaggedWord tw : rl){
+					char firstChar = tw.tag().charAt(0);
+					if(firstChar == 'J' || firstChar == 'N' || firstChar == 'M' || firstChar == 'F' || firstChar == 'L' || firstChar == 'R' || firstChar == 'V' || firstChar == 'W'){
+						resList.add(tw.word());
+					}
+				}
+				
+				return keyWords = resList.toArray(new String[0]);
+//			} finally{
+//				lock.unlock();
+//				System.out.println(pattern + " keywords unlock");
+//			}
 		}
 		else{
-			rl = tagger.apply(new PatSentence(Pattern.compile("\\s*\\[\\[\\w+\\]\\]").matcher(pattern).replaceAll("")).toList());
+			return keyWords;
 		}
-		
-		for(TaggedWord tw : rl){
-			char firstChar = tw.tag().charAt(0);
-			if(firstChar == 'J' || firstChar == 'N' || firstChar == 'M' || firstChar == 'F' || firstChar == 'L' || firstChar == 'R' || firstChar == 'V' || firstChar == 'W'){
-				resList.add(tw.word());
-			}
-		}
-		
-		return resList.toArray(new String[0]);
 	}
 	
 	public String[] getKeyWords(){
@@ -136,42 +200,69 @@ public class PatPattern {
 	}
 	
 	public String[] getDomains() throws SQLException{
-		if(domain_range == null){
-			try {
-				domain_range = con.createStatement().executeQuery("select distinct `domain`,`range_` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return null;
-			} catch (NullPointerException e){
-				System.out.println("ERROR: NullPointer: " + domain_range + ". Pattern: " + pattern);
-				return null;
+		synchronized (ResultSet.class){
+			if(domains == null){
+//			lock.lock();
+//			System.out.println(pattern + " domain null, locked");
+//			
+				LinkedList<String> resList = new LinkedList<String>();
+//			try{
+				if(domain_range == null){
+					try {
+						domain_range = con.createStatement().executeQuery("select distinct `domain`,`range_` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
+					} catch (SQLException e) {
+						e.printStackTrace();
+						return null;
+					} catch (NullPointerException e){
+						System.out.println("ERROR: NullPointer: " + domain_range + ". Pattern: " + pattern);
+						return null;
+					}
+				}
+				domain_range.beforeFirst();
+				while(domain_range.next()){
+					resList.add(domain_range.getString(1));
+				}
+				domains = resList.toArray(new String[0]);
+//			} finally{
+//				lock.unlock();
+//				System.out.println(pattern + " domain unlock");
+//			}
 			}
+			return domains;
 		}
-		LinkedList<String> resList = new LinkedList<String>();
-		while(domain_range.next()){
-			resList.add(domain_range.getString(1));
-		}
-		return resList.toArray(new String[0]);
-		
 	}
 	
 	public String[] getRanges() throws SQLException{
-		if(domain_range == null){
-			try {
-				domain_range = con.createStatement().executeQuery("select distinct `domain`,`range_` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return null;
-			} catch (NullPointerException e){
-				System.out.println("ERROR: NullPointer: " + domain_range + ". Pattern: " + pattern);
-				return null;
-			}			
+		synchronized (ResultSet.class){
+			if(ranges == null){
+//				lock.lock();
+//				System.out.println(pattern + " range null, locked");
+				
+//				try{
+					if(domain_range == null){
+						try {
+							domain_range = con.createStatement().executeQuery("select distinct `domain`,`range_` from `patty`.`wikipedia_patterns` where `patterntext` like \"%" + pattern + "%\"");
+						} catch (SQLException e) {
+							e.printStackTrace();
+							return null;
+						} catch (NullPointerException e){
+							System.out.println("ERROR: NullPointer: " + domain_range + ". Pattern: " + pattern);
+							return null;
+						}			
+					}
+					LinkedList<String> resList = new LinkedList<String>();
+					domain_range.beforeFirst();
+					while(domain_range.next()){
+						resList.add(domain_range.getString(2));
+					}
+					ranges = resList.toArray(new String[0]);
+//				} finally{
+//					lock.unlock();
+//					System.out.println(pattern + " range unlock");
+//				}
+			}
+			return ranges;
 		}
-		LinkedList<String> resList = new LinkedList<String>();
-		while(domain_range.next()){
-			resList.add(domain_range.getString(2));
-		}
-		return resList.toArray(new String[0]);
 	}
 	
 	@Override
@@ -179,7 +270,7 @@ public class PatPattern {
 		return pattern;
 	}
 	
-	
+
 //	public Type[] getTypeArray() throws SQLException{
 //		if(types != null){
 //			return types;
