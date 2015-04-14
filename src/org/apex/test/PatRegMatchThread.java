@@ -2,6 +2,7 @@ package org.apex.test;
 
 import java.sql.SQLException;
 import java.util.regex.Matcher;
+
 import org.apex.patpat.PatLemmatizer;
 import org.apex.patpat.PatMatchThread;
 import org.apex.patpat.PatPattern;

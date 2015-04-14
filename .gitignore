@@ -89,3 +89,4 @@ stanford-corenlp-3.5.1-models.jar
 rsc/patty-dataset
 rsc/patty-dataset-freebase
 rsc/patty-eval
+vectors.bin

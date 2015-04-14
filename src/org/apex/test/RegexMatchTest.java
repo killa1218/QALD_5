@@ -10,7 +10,6 @@ import java.sql.Statement;
 import java.util.HashSet;
 
 import org.apex.patpat.PatPattern;
-
 import org.apex.util.MySQLConnector;
 
 public class RegexMatchTest {

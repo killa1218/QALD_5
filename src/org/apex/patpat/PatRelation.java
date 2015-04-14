@@ -36,6 +36,27 @@ public class PatRelation {
 		return getExactPatterns("dbpedia");
 	}
 	
+	public static String[] getAllRelation() throws SQLException{
+		LinkedList<String> res = new LinkedList<String>();
+		ResultSet rs = con.createStatement().executeQuery("select distinct `relation` from `patty`.`dbpedia_relation_paraphrases` where 1");
+	
+		while(rs.next()){
+			res.add(rs.getString(1));
+		}
+		
+		return res.toArray(new String[0]);
+	}
+	
+	public static void main(String[] argvs) throws SQLException{
+		String[] res = getAllRelation();
+		
+		for(String str : res){
+			System.out.println(str);
+			
+		}
+		
+	}
+	
 //	public String[] getFuzzyPatterns(String kb) throws SQLException{
 //		ResultSet rs = null;
 //		String extPtn = getExactPatterns(kb);

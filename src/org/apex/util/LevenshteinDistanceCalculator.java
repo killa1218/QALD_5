@@ -17,7 +17,7 @@ public class LevenshteinDistanceCalculator {
 	 
 	    // transformation cost for each letter in s1                                    
 	    for (int j = 1; j < len1; j++) {                                                
-	        // initial cost of skipping prefix in String s1                             
+	        // initial cost of skipping prefix in String s1
 	        newcost[0] = j;                                                             
 	 
 	        // transformation cost for each letter in s0                                
@@ -40,6 +40,10 @@ public class LevenshteinDistanceCalculator {
 	 
 	    // the distance is the cost for transforming all letters in both strings        
 	    return cost[len0 - 1];                        
+	}
+	
+	public static float getCorrelation(String source, String target){
+		return source.length() > target.length() ? (float)calculateLD(source, target) / source.length() : (float)calculateLD(source, target) / target.length();
 	}
 	
 }
